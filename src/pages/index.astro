@@ -7,6 +7,7 @@ import Cta from '../components/Cta.astro';
 import { site } from '../data/site';
 import { services } from '../data/services';
 import { byFile } from '../data/gallery';
+import { regions } from '../data/regions';
 import { lightboxSrc } from '../data/lightbox';
 import hero from '../assets/hero.png';
 
@@ -192,6 +193,39 @@ const faq = [
       <div class="more-row">
         <a class="btn btn--primary" href="/galeria">Przejdź do galerii <Icon name="arrow" /></a>
       </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="obszar-title">
+    <div class="wrap">
+      <div class="section__intro">
+        <h2 id="obszar-title">Obszar działania</h2>
+        <p>Działamy na terenie całej Polski. Siedzibę mamy w Małopolsce, blisko granicy ze Śląskiem.</p>
+      </div>
+      <ul class="regions">
+        {
+          regions.map((r) => {
+            const c = byFile(r.cover);
+            return (
+              <li>
+                <a class="region" href={`/${r.slug}`}>
+                  <Image src={c.src} alt="" width={720} widths={[400, 720]} sizes="(max-width: 860px) 100vw, 33vw" />
+                  <h3>{r.name}</h3>
+                  <p>{r.cities.slice(0, 5).join(", ")} i okolice</p>
+                  <span class="card__more">Roboty ziemne – {r.name} <Icon name="arrow" /></span>
+                </a>
+              </li>
+            );
+          })
+        }
+        <li>
+          <a class="region region--pl" href={`tel:${site.phone}`}>
+            <h3>Cała Polska</h3>
+            <p>Działamy na terenie całej Polski. Termin i dojazd ustalamy telefonicznie.</p>
+            <span class="card__more">Zadzwoń: {site.phoneDisplay} <Icon name="arrow" /></span>
+          </a>
+        </li>
+      </ul>
     </div>
   </section>
 

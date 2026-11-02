@@ -1,0 +1,144 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import Faq from '../components/Faq.astro';
+import Cta from '../components/Cta.astro';
+import PageHead from '../components/PageHead.astro';
+import { site } from '../data/site';
+import { services } from '../data/services';
+import { regions, type Region } from '../data/regions';
+import { byFile } from '../data/gallery';
+
+export function getStaticPaths() {
+  return regions.map((r) => ({ params: { region: r.slug }, props: { r } }));
+}
+
+const { r } = Astro.props as { r: Region };
+const cover = byFile(r.cover);
+const url = `${site.url}/${r.slug}`;
+const others = regions.filter((x) => x.slug !== r.slug);
+
+const faq = [
+  ...r.faq,
+  {
+    q: `Ile kosztują roboty ziemne ${r.locative}?`,
+    a: 'Cenę ustalamy indywidualnie – zależy od zakresu prac, rodzaju maszyny, czasu pracy i dojazdu. Zadzwoń pod 794 742 706, a przygotujemy wycenę.',
+  },
+];
+
+const schema = [
+  {
+    '@type': 'Service',
+    '@id': `${url}#usluga`,
+    name: `Roboty ziemne i wyburzenia – ${r.name}`,
+    serviceType: 'Roboty ziemne',
+    description: r.intro[0],
+    url,
+    provider: { '@id': `${site.url}/#firma` },
+    areaServed: [
+      { '@type': 'AdministrativeArea', name: r.voivodeship },
+      ...r.cities.map((c) => ({ '@type': 'City', name: c })),
+    ],
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Strona główna', item: `${site.url}/` },
+      { '@type': 'ListItem', position: 2, name: `Roboty ziemne – ${r.name}`, item: url },
+    ],
+  },
+  { '@type': 'FAQPage', mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+
+<Base title={r.title} description={r.description} schema={schema} ogImage={cover.src}>
+  <PageHead
+    title={`Roboty ziemne i wyburzenia ${r.locative}`}
+    lead={r.intro[0]}
+    image={cover.src}
+    crumbs={[{ href: '/', label: 'Strona główna' }, { label: `Roboty ziemne – ${r.name}` }]}
+  >
+    <div class="hero__actions">
+      <a class="btn btn--primary" href={`tel:${site.phone}`}><Icon name="phone" /> Zadzwoń: {site.phoneDisplay}</a>
+      <a class="btn btn--text" href="/uslugi">Nasza oferta <Icon name="arrow" /></a>
+    </div>
+  </PageHead>
+
+  <section class="section">
+    <div class="wrap svc">
+      <div class="prose">
+        <h2>Usługi koparką i maszynami {r.locative}</h2>
+        {r.intro.slice(1).map((p) => <p>{p}</p>)}
+        <p>
+          Mamy ponad 10 lat doświadczenia i setki zadowolonych klientów – zarówno indywidualnych, jak i biznesowych. Nasz sprzęt jest nowoczesny,
+          regularnie serwisowany i poddawany przeglądom technicznym.
+        </p>
+
+        <h2>Dojeżdżamy m.in. do</h2>
+        <ul class="chips">
+          {r.cities.map((c) => <li>{c}</li>)}
+        </ul>
+        <p class="km-note">…oraz do pozostałych miejscowości – {r.voivodeship} i cała Polska.</p>
+
+        <h2>Co robimy {r.locative}</h2>
+        <ul class="cards cards--compact">
+          {
+            services.map((s) => {
+              const c = byFile(s.cover);
+              return (
+                <li>
+                  <a class="card" href={`/uslugi/${s.slug}`}>
+                    <div class="card__img">
+                      <div class="card__clip">
+                        <Image src={c.src} alt={c.alt} width={480} widths={[320, 480]} sizes="(max-width: 600px) 100vw, 25vw" />
+                      </div>
+                      <span class="card__icon"><Icon name={s.icon} /></span>
+                    </div>
+                    <div class="card__body">
+                      <h3>{s.name}</h3>
+                      <p>{s.short}</p>
+                    </div>
+                  </a>
+                </li>
+              );
+            })
+          }
+        </ul>
+
+        <h2>Najczęstsze pytania</h2>
+        <Faq items={faq} />
+      </div>
+
+      <aside class="aside">
+        <div class="box box--dark">
+          <h3>Zlecenie {r.locative}?</h3>
+          <a class="box__phone" href={`tel:${site.phone}`}>{site.phoneDisplay}</a>
+          <p>Opisz zakres prac i lokalizację – przygotujemy wycenę i termin.</p>
+          <a class="btn btn--primary" href={`tel:${site.phone}`}><Icon name="phone" /> Zadzwoń</a>
+        </div>
+        <div class="box">
+          <h3>Dlaczego my?</h3>
+          <ul class="checks">
+            <li><Icon name="check" /> Ponad 10 lat doświadczenia</li>
+            <li><Icon name="check" /> Setki zadowolonych klientów</li>
+            <li><Icon name="check" /> Nowoczesny, serwisowany sprzęt</li>
+            <li><Icon name="check" /> Działamy w całej Polsce</li>
+          </ul>
+        </div>
+        {
+          others.length > 0 && (
+            <div class="box">
+              <h3>Inne regiony</h3>
+              <ul class="checks">
+                {others.map((o) => <li><Icon name="arrow" /> <a href={`/${o.slug}`}>Roboty ziemne – {o.name}</a></li>)}
+              </ul>
+            </div>
+          )
+        }
+      </aside>
+    </div>
+  </section>
+
+  <Cta />
+</Base>
