@@ -42,13 +42,13 @@ const entries: Entry[] = [
   { file: '20230331_155208.jpg', alt: 'Pas terenu oczyszczony mulczerem leśnym', tags: ['mulczowanie'] },
   { file: '20230401_155842.jpg', alt: 'Wyrównany pas gruntu po przejeździe mulczera leśnego', tags: ['mulczowanie'] },
   { file: '20230401_155849.jpg', alt: 'Mulczer leśny zamontowany na ciągniku, widok z przodu', tags: ['mulczowanie', 'ciagnik'] },
-  { file: 'IMG-20220427-WA0000.jpg', alt: 'Koparka przy pracy na budowie osiedla', tags: ['kolowa'] },
-  { file: 'IMG-20221115-WA0001.jpg', alt: 'Ładowarka kołowa przy pryzmie gruzu z rozbiórki', tags: ['ladowarka', 'wyburzenia'] },
-  { file: 'IMG-20230119-WA0001.jpg', alt: 'Koparka pracująca wieczorem przy oświetleniu roboczym', tags: ['gasienicowa'] },
-  { file: 'IMG-20230210-WA0000.jpg', alt: 'Koparki przy rowie melioracyjnym zimą', tags: ['gasienicowa'] },
-  { file: 'IMG-20230221-WA0003.jpg', alt: 'Wozidło budowlane i koparka kołowa na zimowym placu budowy', tags: ['wozidla', 'kolowa'] },
-  { file: 'IMG-20230222-WA0001.jpg', alt: 'Koparka usuwa zarośla i karpy na skarpie', tags: ['mulczowanie', 'gasienicowa'] },
-  { file: 'IMG-20230406-WA0000.jpg', alt: 'Koparka rozbiera betonowy fundament przy budynku', tags: ['wyburzenia'] },
+  { file: 'IMG-20220427-WA0000.jpg', alt: 'Duża ładowarka kołowa przy pryzmie gruzu z rozbiórki', tags: ['ladowarka', 'wyburzenia'] },
+  { file: 'IMG-20221115-WA0001.jpg', alt: 'Koparka gąsienicowa pracująca wieczorem przy gruzie betonowym', tags: ['gasienicowa', 'wyburzenia'] },
+  { file: 'IMG-20230119-WA0001.jpg', alt: 'Koparki przy rowie i zbiorniku wodnym zimą', tags: ['gasienicowa'] },
+  { file: 'IMG-20230210-WA0000.jpg', alt: 'Wozidło budowlane i koparka kołowa podczas robót ziemnych zimą', tags: ['wozidla', 'kolowa'] },
+  { file: 'IMG-20230221-WA0003.jpg', alt: 'Minikoparka usuwa zarośla i karpy na skarpie', tags: ['gasienicowa'] },
+  { file: 'IMG-20230222-WA0001.jpg', alt: 'Koparka przy wykopie pod rury i instalacje na skarpie', tags: ['gasienicowa'] },
+  { file: 'IMG-20230406-WA0000.jpg', alt: 'Minikoparka przy rozbiórce betonowego fundamentu', tags: ['wyburzenia'] },
 ];
 
 const files = import.meta.glob<{ default: ImageMetadata }>('../assets/gallery/*.jpg', { eager: true });

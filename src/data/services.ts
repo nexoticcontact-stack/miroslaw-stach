@@ -163,7 +163,7 @@ export const services: Service[] = [
       'Skontaktuj się z nami, aby uzyskać więcej informacji.',
     ],
     scope: ['Ładowarki 8,5–25 t', 'Ładowarki kołowe', 'Załadunek ziemi, kruszywa i gruzu'],
-    cover: 'IMG-20221115-WA0001.jpg',
+    cover: '20220125_075227.jpg',
     tag: 'ladowarka',
     faq: [
       {
@@ -194,7 +194,7 @@ export const services: Service[] = [
       'Zachęcamy do kontaktu w celu uzyskania szczegółowych informacji.',
     ],
     scope: ['Nośność 1,5–16 t', 'Z operatorem lub bez', 'Transport urobku na budowie'],
-    cover: 'IMG-20230221-WA0003.jpg',
+    cover: 'IMG-20230210-WA0000.jpg',
     tag: 'wozidla',
     faq: [
       {
