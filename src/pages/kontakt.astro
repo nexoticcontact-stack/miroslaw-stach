@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import PageHead from '../components/PageHead.astro';
 import { site } from '../data/site';
+import { byFile } from '../data/gallery';
 
 const schema = [
   { '@type': 'ContactPage', name: 'Kontakt – Mirosław Stach Firma Usługowa', url: `${site.url}/kontakt`, about: { '@id': `${site.url}/#firma` } },
@@ -24,6 +25,7 @@ const schema = [
   <PageHead
     title="Masz pytanie?"
     lead="Skontaktuj się z nami, wybierając jeden z poniższych linków."
+    image={byFile('20220901_094422.jpg').src}
     crumbs={[{ href: '/', label: 'Strona główna' }, { label: 'Kontakt' }]}
   />
 

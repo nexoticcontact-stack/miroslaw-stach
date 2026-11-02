@@ -35,6 +35,7 @@ const schema = [
   <PageHead
     title="Galeria zdjęć"
     lead="Zdjęcia z naszych realizacji. Kliknij zdjęcie, aby je powiększyć."
+    image={gallery.find((g) => g.file === '20220511_152449.jpg')!.src}
     crumbs={[{ href: '/', label: 'Strona główna' }, { label: 'Galeria' }]}
   />
 

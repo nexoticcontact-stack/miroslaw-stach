@@ -8,7 +8,8 @@ interface Props {
   crumbs: { href?: string; label: string }[];
   image?: ImageMetadata;
 }
-const { title, lead, crumbs, image } = Astro.props;
+import { byFile } from '../data/gallery';
+const { title, lead, crumbs, image = byFile('20230325_153138.jpg').src } = Astro.props;
 ---
 
 <section class="page-head">
