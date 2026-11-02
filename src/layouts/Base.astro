@@ -17,7 +17,7 @@ interface Props {
 }
 
 const { title, description, schema = [], ogImage, noindex = false } = Astro.props;
-const path = Astro.url.pathname.replace(/\/$/, '').replace(/\.html$/, '') || '/';
+const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '').replace(/\/$/, '') || '/';
 const canonical = new URL(path, site.url).href.replace(/\/$/, '');
 const canonicalHref = path === '/' ? `${site.url}/` : canonical;
 

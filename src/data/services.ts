@@ -23,7 +23,7 @@ export const services: Service[] = [
     h1: 'Usługi koparką gąsienicową',
     title: 'Usługi koparką gąsienicową – cała Polska | Mirosław Stach',
     description:
-      'Wykopy pod fundamenty i baseny, przepusty, drogi i parkingi, wyburzenia. Usługi koparką gąsienicową dla klientów prywatnych i firm w całej Polsce. Tel. 794 742 706.',
+      'Wykopy pod fundamenty i baseny, przepusty, drogi, parkingi i wyburzenia. Usługi koparką gąsienicową dla klientów prywatnych i firm w całej Polsce.',
     short: 'Wykopy fundamentów, wykopy pod baseny, przepusty, wyburzenia, drogi i parkingi.',
     icon: 'excavator',
     body: [
@@ -36,6 +36,10 @@ export const services: Service[] = [
     cover: '20230418_173640.jpg',
     tag: 'gasienicowa',
     faq: [
+      {
+        q: "Kiedy lepsza jest koparka gąsienicowa, a kiedy kołowa?",
+        a: "Koparka gąsienicowa lepiej sprawdza się na miękkim, podmokłym i nierównym terenie oraz przy głębokich wykopach, bo stoi stabilnie i rozkłada nacisk na dużej powierzchni. Koparka kołowa szybciej się przemieszcza i nie niszczy utwardzonych nawierzchni, dlatego częściej wybiera się ją do prac przy drogach i na placach.",
+      },
       {
         q: 'Czy wykonujecie wykopy pod fundamenty domu?',
         a: 'Tak. Wykopy fundamentów to jedna z naszych głównych usług koparką gąsienicową, zarówno dla klientów prywatnych, jak i firm budowlanych.',
@@ -66,6 +70,10 @@ export const services: Service[] = [
     tag: 'kolowa',
     faq: [
       {
+        q: "Co to jest niwelacja terenu?",
+        a: "Niwelacja terenu to wyrównanie gruntu do zaplanowanego poziomu: ścięcie nadmiaru ziemi i wypełnienie zagłębień. Wykonuje się ją przed budową domu, pod trawnik, kostkę brukową, plac lub drogę.",
+      },
+      {
         q: 'Co to jest korytowanie?',
         a: 'Korytowanie to usunięcie wierzchniej warstwy gruntu na określoną głębokość pod podbudowę drogi, placu, podjazdu lub kostki brukowej. „Koryto” wypełnia się potem kruszywem i zagęszcza.',
       },
@@ -95,6 +103,10 @@ export const services: Service[] = [
     tag: 'wyburzenia',
     faq: [
       {
+        q: "Co dzieje się z gruzem po wyburzeniu?",
+        a: "Gruz z rozbiórki ładujemy ładowarkami o masie od 8,5 do 25 ton. Sposób wywozu ustalamy indywidualnie przy wycenie.",
+      },
+      {
         q: 'Czy rozbiórka budynku wymaga pozwolenia?',
         a: 'To zależy od obiektu: część rozbiórek wymaga pozwolenia, część zgłoszenia, a niektóre drobne obiekty nie wymagają formalności. Najlepiej potwierdzić to w starostwie powiatowym (wydział architektury i budownictwa) właściwym dla miejsca rozbiórki.',
       },
@@ -123,6 +135,14 @@ export const services: Service[] = [
     tag: 'mulczowanie',
     faq: [
       {
+        q: "Od czego zależy koszt mulczowania?",
+        a: "Od powierzchni terenu, gęstości i grubości roślinności, ukształtowania terenu i dojazdu. Dokładną wycenę przygotowujemy po rozmowie telefonicznej.",
+      },
+      {
+        q: "Gdzie stosuje się mulczer leśny?",
+        a: "W lasach, parkach, przy drogach (przydroża) oraz na zarośniętych działkach – wszędzie tam, gdzie trzeba szybko usunąć zadrzewienia, krzewy i inną roślinność.",
+      },
+      {
         q: 'Co to jest mulczowanie terenu?',
         a: 'Mulczowanie to rozdrabnianie roślinności (krzewów, samosiejek, młodych drzew) bezpośrednio na miejscu. Rozdrobniona masa zostaje na gruncie, więc nie trzeba jej wywozić.',
       },
@@ -147,6 +167,14 @@ export const services: Service[] = [
     tag: 'ladowarka',
     faq: [
       {
+        q: "Do czego służy ładowarka kołowa?",
+        a: "Ładowarka kołowa służy do załadunku i przemieszczania materiałów sypkich: ziemi, kruszywa, piasku i gruzu, np. na wywrotki, przyczepy lub na pryzmy na placu budowy.",
+      },
+      {
+        q: "Jaką ładowarkę wybrać?",
+        a: "Mniejsze ładowarki (od 8,5 t) sprawdzają się na ciasnych placach i przy mniejszych pracach, większe (do 25 t) przy załadunku dużych ilości materiału. Pomożemy dobrać maszynę do zadania.",
+      },
+      {
         q: 'Jakie ładowarki są dostępne do wynajęcia?',
         a: 'Ładowarki o masie od 8,5 do 25 ton, w tym ładowarki kołowe. Maszyny są regularnie serwisowane i przeglądane.',
       },
@@ -170,6 +198,14 @@ export const services: Service[] = [
     tag: 'wozidla',
     faq: [
       {
+        q: "Co to jest wozidło budowlane?",
+        a: "Wozidło budowlane to pojazd do przewozu urobku, ziemi, piasku i kruszywa w obrębie placu budowy, także po nieutwardzonym i trudnym terenie. Często pracuje w parze z koparką lub ładowarką.",
+      },
+      {
+        q: "Jakie wozidło wybrać?",
+        a: "To zależy od skali prac: mniejsze wozidła (od 1,5 t) sprawdzą się na ciasnych działkach, większe (do 16 t) przy dużych wykopach i dużych ilościach materiału.",
+      },
+      {
         q: 'Czy wozidło można wynająć bez operatora?',
         a: 'Tak. Wozidła budowlane wynajmujemy z doświadczonym operatorem lub bez operatora.',
       },
@@ -181,7 +217,7 @@ export const services: Service[] = [
     h1: 'Usługi ciągnikiem rolniczym',
     title: 'Usługi ciągnikiem, beczkowóz 10 000 l, zamiatarka',
     description:
-      'Usługi ciągnikiem rolniczym z przyczepą 10 m³ i beczką 10 000 l: przewóz materiałów, polewanie dróg, stabilizacja. Zamiatarka uliczna. Mirosław Stach Firma Usługowa.',
+      'Usługi ciągnikiem rolniczym z przyczepą 10 m³ i beczką 10 000 l: przewóz materiałów, polewanie dróg, stabilizacja. Zamiatarka uliczna. Cała Polska.',
     short: 'Przyczepa 10 m³, beczka 10 000 l, polewanie dróg, zamiatarka uliczna.',
     icon: 'tractor',
     body: [
@@ -193,6 +229,10 @@ export const services: Service[] = [
     cover: '20220812_164110.jpg',
     tag: 'ciagnik',
     faq: [
+      {
+        q: "Do czego służy polewanie dróg?",
+        a: "Polewanie dróg ogranicza pylenie na budowach i drogach gruntowych. Woda z beczki jest też wykorzystywana przy stabilizacji gruntu.",
+      },
       {
         q: 'Jaką pojemność ma przyczepa i beczka?',
         a: 'Przyczepa ma pojemność 10 m³, a beczka 10 000 litrów.',
