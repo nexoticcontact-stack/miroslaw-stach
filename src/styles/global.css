@@ -1630,3 +1630,17 @@ p {
 .region--pl::after {
   background: linear-gradient(135deg, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.18) 100%);
 }
+@media (max-width: 480px) {
+  .tile {
+    padding: 18px;
+    gap: 14px;
+  }
+  .tile__icon {
+    width: 46px;
+    height: 46px;
+  }
+  .tile strong {
+    font-size: 0.98rem;
+    overflow-wrap: normal;
+  }
+}
