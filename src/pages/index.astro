@@ -94,17 +94,6 @@ const faq = [
     </div>
   </nav>
 
-  <section class="stats" aria-label="Firma w liczbach">
-    <div class="wrap">
-      <ul>
-        <li><strong>10+</strong><span>lat doświadczenia</span></li>
-        <li><strong>Setki</strong><span>zadowolonych klientów</span></li>
-        <li><strong>{services.length}</strong><span>rodzajów usług</span></li>
-        <li><strong>Cała Polska</strong><span>obszar działania</span></li>
-      </ul>
-    </div>
-  </section>
-
   <section class="why" aria-labelledby="why-title">
     <div class="why__photo">
       <Image src={why.src} alt={why.alt} width={1200} widths={[640, 1200]} sizes="(max-width: 900px) 100vw, 50vw" />
@@ -124,6 +113,10 @@ const faq = [
           <li><Icon name="check" /> Nowoczesny, regularnie serwisowany sprzęt</li>
           <li><Icon name="check" /> Konkurencyjne ceny i fachowa obsługa</li>
         </ul>
+        <div class="why__stats">
+          <div><strong>10+</strong><span>lat doświadczenia</span></div>
+          <div><strong>Setki</strong><span>zadowolonych klientów</span></div>
+        </div>
       </div>
     </div>
   </section>
