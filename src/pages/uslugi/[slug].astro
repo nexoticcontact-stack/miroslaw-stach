@@ -5,7 +5,7 @@ import Icon from '../../components/Icon.astro';
 import Faq from '../../components/Faq.astro';
 import Cta from '../../components/Cta.astro';
 import PageHead from '../../components/PageHead.astro';
-import { site, area } from '../../data/site';
+import { site } from '../../data/site';
 import { services, type Service } from '../../data/services';
 import { byFile, byTag } from '../../data/gallery';
 
@@ -28,7 +28,7 @@ const schema = [
     description: s.body[0],
     url,
     provider: { '@id': `${site.url}/#firma` },
-    areaServed: [area.center, ...area.towns].map((t) => ({ '@type': 'City', name: t.name })),
+    areaServed: { '@type': 'Country', name: 'Polska' },
   },
   {
     '@type': 'BreadcrumbList',

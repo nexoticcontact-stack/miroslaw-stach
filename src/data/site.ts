@@ -25,23 +25,5 @@ export const site = {
   sameAs: [] as string[],
 };
 
-// Obszar działania – ZAŁOŻENIE do potwierdzenia przez właściciela.
-// lat/lon przybliżone, używane tylko do schematycznej mapki.
-type Town = { name: string; lat: number; lon: number; left?: boolean };
-
-export const area: { center: Town; towns: Town[] } = {
-  center: { name: 'Przeginia', lat: 50.2, lon: 19.66 },
-  towns: [
-    { name: 'Jerzmanowice', lat: 50.205, lon: 19.755 },
-    { name: 'Olkusz', lat: 50.281, lon: 19.565 },
-    { name: 'Krzeszowice', lat: 50.135, lon: 19.633, left: true },
-    { name: 'Skała', lat: 50.228, lon: 19.853 },
-    { name: 'Sułoszowa', lat: 50.29, lon: 19.733 },
-    { name: 'Zabierzów', lat: 50.113, lon: 19.8 },
-    { name: 'Wielka Wieś', lat: 50.143, lon: 19.795 },
-    { name: 'Trzebinia', lat: 50.16, lon: 19.47, left: true },
-    { name: 'Bolesław', lat: 50.292, lon: 19.48, left: true },
-    { name: 'Wolbrom', lat: 50.38, lon: 19.76 },
-    { name: 'Kraków', lat: 50.062, lon: 19.938 },
-  ],
-};
+// Obszar działania: cała Polska.
+export const areaServed = "Polska";

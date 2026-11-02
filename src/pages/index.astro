@@ -4,8 +4,7 @@ import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import Faq from '../components/Faq.astro';
 import Cta from '../components/Cta.astro';
-import AreaMap from '../components/AreaMap.astro';
-import { site, area } from '../data/site';
+import { site } from '../data/site';
 import { services } from '../data/services';
 import { byFile } from '../data/gallery';
 import hero from '../assets/hero.png';
@@ -28,7 +27,7 @@ const faq = [
   },
   {
     q: 'Gdzie działa firma?',
-    a: `Firma ma siedzibę w Przegini (gmina Jerzmanowice-Przeginia, powiat krakowski). Pracujemy w okolicy: ${area.towns.map((t) => t.name).join(', ')}.`,
+    a: 'Działamy na terenie całej Polski. Zakres prac, termin i dojazd ustalamy telefonicznie.',
   },
   {
     q: 'Czy wynajmujecie maszyny z operatorem?',
@@ -42,8 +41,8 @@ const faq = [
 ---
 
 <Base
-  title="Roboty ziemne Przeginia, Olkusz, Krzeszowice | Mirosław Stach"
-  description="Mirosław Stach Firma Usługowa – roboty ziemne, wyburzenia, usługi koparką gąsienicową i kołową, wynajem ładowarek i wozideł, mulczer leśny. Przeginia, tel. 794 742 706."
+  title="Roboty ziemne i wyburzenia – cała Polska | Mirosław Stach"
+  description="Mirosław Stach Firma Usługowa – roboty ziemne, wyburzenia, usługi koparką gąsienicową i kołową, wynajem ładowarek i wozideł, mulczer leśny. Cała Polska, tel. 794 742 706."
   schema={[{ '@type': 'FAQPage', mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) }]}
 >
   <section class="hero">
@@ -67,7 +66,7 @@ const faq = [
       <div class="hero__text">
         <h1>Roboty ziemne i wyburzenia <span class="light">Mirosław Stach – Firma Usługowa</span></h1>
         <p class="hero__lead">
-          Zadowolenie klienta to nasz priorytet. Prace ziemne, budowlane i drogowe, korytowanie, odwodnienia terenów oraz wyburzenia w Przegini i okolicach.
+          Zadowolenie klienta to nasz priorytet. Prace ziemne, budowlane i drogowe, korytowanie, odwodnienia terenów oraz wyburzenia na terenie całej Polski.
         </p>
         <div class="hero__actions">
           <a class="btn btn--primary" href="/uslugi">Nasza oferta <Icon name="arrow" /></a>
@@ -102,7 +101,7 @@ const faq = [
       <div class="why__text">
         <h2 id="why-title">Dlaczego my?</h2>
         <p>
-          Firma Mirosław Stach to dynamicznie rozwijająca się firma usługowa zlokalizowana w Przegini, specjalizująca się w branży robót ziemnych. Nasza firma działa na rynku od ponad 7 lat i cieszy się uznaniem wśród klientów, zarówno indywidualnych, jak i biznesowych.
+          Firma Mirosław Stach to dynamicznie rozwijająca się firma usługowa specjalizująca się w branży robót ziemnych. Nasza firma działa na rynku od ponad 7 lat i cieszy się uznaniem wśród klientów, zarówno indywidualnych, jak i biznesowych.
         </p>
         <p>
           Nasza oferta skierowana jest do klientów poszukujących profesjonalnej i kompleksowej obsługi z zakresu robót ziemnych. Dla naszej firmy najważniejsze jest zadowolenie klienta, dlatego dokładamy wszelkich starań, aby każde zlecenie było wykonane zgodnie z oczekiwaniami klienta.
@@ -188,22 +187,6 @@ const faq = [
       <div class="more-row">
         <a class="btn btn--primary" href="/galeria">Przejdź do galerii <Icon name="arrow" /></a>
       </div>
-    </div>
-  </section>
-
-  <section class="section section--alt" aria-labelledby="obszar-title">
-    <div class="wrap area">
-      <div>
-        <div class="section__intro">
-          <h2 id="obszar-title">Obszar działania</h2>
-          <p>Siedziba firmy znajduje się w Przegini (gmina Jerzmanowice-Przeginia, powiat krakowski). Usługi wykonujemy w Przegini i okolicznych miejscowościach, m.in.:</p>
-        </div>
-        <ul class="chips">
-          {area.towns.map((t) => <li>{t.name}</li>)}
-        </ul>
-        <p><a class="btn btn--text" href="/obszar-dzialania">Więcej o obszarze działania <Icon name="arrow" /></a></p>
-      </div>
-      <AreaMap />
     </div>
   </section>
 

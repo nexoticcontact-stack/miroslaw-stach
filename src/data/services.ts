@@ -21,9 +21,9 @@ export const services: Service[] = [
     slug: 'koparka-gasienicowa',
     name: 'Usługi koparką gąsienicową',
     h1: 'Usługi koparką gąsienicową',
-    title: 'Usługi koparką gąsienicową – Olkusz, Krzeszowice, Kraków',
+    title: 'Usługi koparką gąsienicową – cała Polska | Mirosław Stach',
     description:
-      'Wykopy pod fundamenty i baseny, przepusty, drogi i parkingi, wyburzenia. Usługi koparką gąsienicową dla klientów prywatnych i firm. Przeginia, tel. 794 742 706.',
+      'Wykopy pod fundamenty i baseny, przepusty, drogi i parkingi, wyburzenia. Usługi koparką gąsienicową dla klientów prywatnych i firm w całej Polsce. Tel. 794 742 706.',
     short: 'Wykopy fundamentów, wykopy pod baseny, przepusty, wyburzenia, drogi i parkingi.',
     icon: 'excavator',
     body: [
@@ -52,7 +52,7 @@ export const services: Service[] = [
     h1: 'Usługi koparką kołową 18 t',
     title: 'Usługi koparką kołową 18 t – korytowanie, niwelacja',
     description:
-      'Koparka kołowa 18 t: korytowanie, niwelacja terenu, wykopy pod fundamenty, kanalizację i instalacje, młot wyburzeniowy. Przeginia, Olkusz, Krzeszowice.',
+      'Koparka kołowa 18 t: korytowanie, niwelacja terenu, wykopy pod fundamenty, kanalizację i instalacje, młot wyburzeniowy. Działamy na terenie całej Polski.',
     short: 'Koparka 18 t: korytowanie, niwelacja terenu, kanalizacja, młot wyburzeniowy.',
     icon: 'wheel',
     body: [
@@ -79,7 +79,7 @@ export const services: Service[] = [
     slug: 'wyburzenia-rozbiorki',
     name: 'Wyburzenia i rozbiórki',
     h1: 'Wyburzenia i rozbiórki',
-    title: 'Wyburzenia i rozbiórki – Przeginia, Olkusz, Kraków',
+    title: 'Wyburzenia i rozbiórki – cała Polska | Mirosław Stach',
     description:
       'Wyburzenia i rozbiórki koparką gąsienicową i koparką kołową z młotem wyburzeniowym: burzenie ścian, fundamentów, przygotowanie terenu pod budowę.',
     short: 'Burzenie ścian i fundamentów, młot wyburzeniowy, przygotowanie terenu pod budowę.',
@@ -96,7 +96,7 @@ export const services: Service[] = [
     faq: [
       {
         q: 'Czy rozbiórka budynku wymaga pozwolenia?',
-        a: 'To zależy od obiektu: część rozbiórek wymaga pozwolenia, część zgłoszenia, a niektóre drobne obiekty nie wymagają formalności. Dla gminy Jerzmanowice-Przeginia i okolic sprawy prowadzi Starostwo Powiatowe w Krakowie i tam najlepiej to potwierdzić.',
+        a: 'To zależy od obiektu: część rozbiórek wymaga pozwolenia, część zgłoszenia, a niektóre drobne obiekty nie wymagają formalności. Najlepiej potwierdzić to w starostwie powiatowym (wydział architektury i budownictwa) właściwym dla miejsca rozbiórki.',
       },
       {
         q: 'Jakim sprzętem wykonujecie wyburzenia?',
@@ -108,9 +108,9 @@ export const services: Service[] = [
     slug: 'mulczowanie-karczowanie',
     name: 'Mulczer leśny',
     h1: 'Usługi mulczerem leśnym',
-    title: 'Mulczowanie terenu mulczerem leśnym – Olkusz, Kraków',
+    title: 'Mulczowanie terenu mulczerem leśnym | Mirosław Stach',
     description:
-      'Usługi mulczerem leśnym: szybkie i skuteczne usuwanie zadrzewień i roślinności w lesie, parkach i przy drogach. Przeginia, Olkusz, Krzeszowice, Kraków.',
+      'Usługi mulczerem leśnym: szybkie i skuteczne usuwanie zadrzewień i roślinności w lesie, parkach i przy drogach. Działamy na terenie całej Polski.',
     short: 'Szybkie i skuteczne usuwanie zadrzewień i roślinności w lesie, parkach i przy drogach.',
     icon: 'mulcher',
     body: [
@@ -132,9 +132,9 @@ export const services: Service[] = [
     slug: 'wynajem-ladowarki',
     name: 'Wynajem ładowarek 8,5–25 t',
     h1: 'Wynajem ładowarek 8,5–25 ton',
-    title: 'Wynajem ładowarki kołowej 8,5–25 t – Przeginia, Olkusz',
+    title: 'Wynajem ładowarek kołowych 8,5–25 t | Mirosław Stach',
     description:
-      'Wynajem ładowarek o masie od 8,5 do 25 ton, w tym ładowarek kołowych. Maszyny regularnie serwisowane i przeglądane. Przeginia, Olkusz, Krzeszowice, Kraków.',
+      'Wynajem ładowarek o masie od 8,5 do 25 ton, w tym ładowarek kołowych. Maszyny regularnie serwisowane i przeglądane. Cała Polska.',
     short: 'Ładowarki od 8,5 do 25 ton, w tym kołowe. Regularnie serwisowane.',
     icon: 'loader',
     body: [
@@ -156,9 +156,9 @@ export const services: Service[] = [
     slug: 'wynajem-wozidel',
     name: 'Wynajem wozideł budowlanych',
     h1: 'Wynajem wozideł budowlanych',
-    title: 'Wynajem wozideł budowlanych 1,5–16 t – Małopolska',
+    title: 'Wynajem wozideł budowlanych 1,5–16 t | Mirosław Stach',
     description:
-      'Wynajem wozideł budowlanych o nośności od 1,5 do 16 ton, z doświadczonymi operatorami lub bez. Przeginia, Olkusz, Krzeszowice, Kraków.',
+      'Wynajem wozideł budowlanych o nośności od 1,5 do 16 ton, z doświadczonymi operatorami lub bez. Działamy na terenie całej Polski.',
     short: 'Nośność od 1,5 do 16 ton, z doświadczonym operatorem lub bez.',
     icon: 'dumper',
     body: [
@@ -181,7 +181,7 @@ export const services: Service[] = [
     h1: 'Usługi ciągnikiem rolniczym',
     title: 'Usługi ciągnikiem, beczkowóz 10 000 l, zamiatarka',
     description:
-      'Usługi ciągnikiem rolniczym z przyczepą 10 m³ i beczką 10 000 l: przewóz materiałów, polewanie dróg, stabilizacja. Zamiatarka uliczna. Przeginia i okolice.',
+      'Usługi ciągnikiem rolniczym z przyczepą 10 m³ i beczką 10 000 l: przewóz materiałów, polewanie dróg, stabilizacja. Zamiatarka uliczna. Mirosław Stach Firma Usługowa.',
     short: 'Przyczepa 10 m³, beczka 10 000 l, polewanie dróg, zamiatarka uliczna.',
     icon: 'tractor',
     body: [

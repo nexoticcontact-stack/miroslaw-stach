@@ -4,7 +4,7 @@ import '../styles/global.css';
 import { getImage } from 'astro:assets';
 import Brand from '../components/Brand.astro';
 import Icon from '../components/Icon.astro';
-import { site, area } from '../data/site';
+import { site } from '../data/site';
 import { services } from '../data/services';
 import heroImg from '../assets/hero.png';
 
@@ -27,7 +27,6 @@ const ogUrl = new URL(og.src, site.url).href;
 const nav = [
   { href: '/', label: 'Strona główna' },
   { href: '/uslugi', label: 'Usługi' },
-  { href: '/obszar-dzialania', label: 'Obszar działania' },
   { href: '/galeria', label: 'Galeria' },
   { href: '/kontakt', label: 'Kontakt' },
 ];
@@ -57,7 +56,7 @@ const business = {
     addressCountry: site.address.country,
   },
   hasMap: site.mapsUrl,
-  areaServed: [area.center, ...area.towns].map((t) => ({ '@type': 'City', name: t.name })),
+  areaServed: { '@type': 'Country', name: 'Polska' },
   knowsAbout: ['roboty ziemne', 'wykopy pod fundamenty', 'korytowanie', 'niwelacja terenu', 'wyburzenia', 'rozbiórki', 'mulczowanie terenu', 'odwodnienie terenu'],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
@@ -123,7 +122,7 @@ const year = new Date().getFullYear();
 
     <div class="topbar">
       <div class="wrap">
-        <span class="hide-sm">{site.address.street}, {site.address.postalCode} {site.address.city}, woj. {site.address.region}</span>
+        <span class="hide-sm">Roboty ziemne i wyburzenia na terenie całej Polski</span>
         <span>
           <a href={`tel:${site.phone}`}>Tel. {site.phoneDisplay}</a>
           <span class="hide-sm"> · <a href={`mailto:${site.email}`}>{site.email}</a></span>
