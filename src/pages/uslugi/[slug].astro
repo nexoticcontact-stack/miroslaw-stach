@@ -1,0 +1,115 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import Faq from '../../components/Faq.astro';
+import Cta from '../../components/Cta.astro';
+import PageHead from '../../components/PageHead.astro';
+import { site } from '../../data/site';
+import { services, type Service } from '../../data/services';
+import { byFile, byTag } from '../../data/gallery';
+import { lightboxSrc } from '../../data/lightbox';
+
+export function getStaticPaths() {
+  return services.map((s) => ({ params: { slug: s.slug }, props: { s } }));
+}
+
+const { s } = Astro.props as { s: Service };
+const cover = byFile(s.cover);
+const photos = byTag(s.tag, 6).filter((g) => g.file !== s.cover).slice(0, 4);
+const photoLinks = await Promise.all(photos.map((g) => lightboxSrc(g.src)));
+const related = services.filter((x) => x.slug !== s.slug);
+const url = `${site.url}/uslugi/${s.slug}`;
+
+const schema = [
+  {
+    '@type': 'Service',
+    '@id': `${url}#usluga`,
+    name: s.h1,
+    description: s.body[0],
+    url,
+    provider: { '@id': `${site.url}/#firma` },
+    areaServed: { '@type': 'Country', name: 'Polska' },
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Strona główna', item: `${site.url}/` },
+      { '@type': 'ListItem', position: 2, name: 'Usługi', item: `${site.url}/uslugi` },
+      { '@type': 'ListItem', position: 3, name: s.h1, item: url },
+    ],
+  },
+  {
+    '@type': 'FAQPage',
+    mainEntity: s.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  },
+];
+---
+
+<Base title={s.title} description={s.description} schema={schema} ogImage={cover.src}>
+  <PageHead
+    title={s.h1}
+    lead={s.body[0]}
+    image={cover.src}
+    crumbs={[{ href: '/', label: 'Strona główna' }, { href: '/uslugi', label: 'Usługi' }, { label: s.name }]}
+  >
+    <div class="hero__actions">
+      <a class="btn btn--primary" href={`tel:${site.phone}`}><Icon name="phone" /> Zadzwoń: {site.phoneDisplay}</a>
+    </div>
+  </PageHead>
+
+  <section class="section">
+    <div class="wrap svc">
+      <div class="prose">
+        <h2>{s.name}</h2>
+        {s.body.slice(1).map((p) => <p>{p}</p>)}
+
+        {
+          photos.length > 0 && (
+            <>
+              <h2>Zdjęcia z realizacji</h2>
+              <div class="photos">
+                {photos.map((g, i) => (
+                  <a href={photoLinks[i].big} data-mid={photoLinks[i].mid} data-lightbox data-alt={g.alt}>
+                    <Image src={g.src} alt={g.alt} width={720} widths={[400, 720]} sizes="(max-width: 980px) 50vw, 30vw" />
+                  </a>
+                ))}
+              </div>
+            </>
+          )
+        }
+
+        <h2>Najczęstsze pytania</h2>
+        <Faq items={s.faq} />
+      </div>
+
+      <aside class="aside">
+        <div class="box">
+          <h3>Zakres prac</h3>
+          <ul class="checks">
+            {s.scope.map((x) => <li><Icon name="check" /> {x}</li>)}
+          </ul>
+        </div>
+        <div class="box box--dark">
+          <h3>Masz pytanie?</h3>
+          <a class="box__phone" href={`tel:${site.phone}`}>{site.phoneDisplay}</a>
+          <p>Skontaktuj się z nami, aby uzyskać więcej informacji i wycenę.</p>
+          <a class="btn btn--primary" href={`tel:${site.phone}`}><Icon name="phone" /> Zadzwoń</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="inne-title">
+    <div class="wrap">
+      <div class="section__intro">
+        <h2 id="inne-title">Pozostałe usługi</h2>
+      </div>
+      <ul class="links">
+        {related.map((r) => <li><a href={`/uslugi/${r.slug}`}><Icon name={r.icon} /> {r.name}</a></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <Cta />
+</Base>

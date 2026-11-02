@@ -1,0 +1,29 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+interface Props {
+  title?: string;
+}
+const { title = 'Masz pytanie?' } = Astro.props;
+---
+
+<section class="contact" aria-labelledby="kontakt-title">
+  <div class="wrap">
+    <h2 id="kontakt-title">{title}</h2>
+    <p class="contact__lead">Skontaktuj się z nami, wybierając jeden z poniższych linków.</p>
+    <div class="tiles">
+      <a class="tile" href={`tel:${site.phone}`}>
+        <span class="tile__icon"><Icon name="phone" /></span>
+        <span><small>Telefon</small><strong>{site.phoneDisplay}</strong></span>
+      </a>
+      <a class="tile" href={`mailto:${site.email}`}>
+        <span class="tile__icon"><Icon name="mail" /></span>
+        <span><small>E-mail</small><strong>{site.email}</strong></span>
+      </a>
+      <a class="tile" href={site.mapsUrl} target="_blank" rel="noopener noreferrer">
+        <span class="tile__icon"><Icon name="pin" /></span>
+        <span><small>Adres</small><strong>{site.address.postalCode} {site.address.street}</strong></span>
+      </a>
+    </div>
+  </div>
+</section>

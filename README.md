@@ -1,28 +1,23 @@
-# Mirosław Stach - Page
+# Mirosław Stach Firma Usługowa – strona www
 
-## Table of content
+Strona firmowa (roboty ziemne, wyburzenia, wynajem maszyn) – https://www.miroslawstach.pl
 
-- [Demo](#demo)
-- [Description](#description)
-- [Technologies](#technologies)
+## Technologia
+- [Astro](https://astro.build) – statyczne HTML, zoptymalizowane obrazy (AVIF/WebP)
+- Hosting: Vercel (`vercel.json`: przekierowania, nagłówki bezpieczeństwa, CSP)
+- Bez frameworka JS po stronie klienta – jedyny skrypt: `public/js/site.js`
 
-## Demo
+## Gdzie co jest
+- `src/data/site.ts` – dane firmy (NAP), obszar działania
+- `src/data/services.ts` – treści usług (podstrony `/uslugi/*`)
+- `src/data/gallery.ts` – zdjęcia + opisy (alt)
+- `src/layouts/Base.astro` – `<head>`, SEO, JSON-LD, nagłówek, stopka
+- `public/robots.txt`, `public/llms.txt` – SEO / GEO
+- `seo/` – research słów kluczowych, audyt, plan, raport
 
-You can find a demo version [here](https://www.miroslawstach.pl).
-
-## Description
-
-Mirsoław Stach, a client of mine, commissioned a website for his service company named "Mirsoław Stach - Firma Usługowa". The website provides basic information about the company.
-
-## Technologies
-
-- HTML
-- CSS (Flex, Grid, media queries)
-- BEM
-- JavaScript (ES6+ features)
-- React
-- React-Router
-- Create-react-app
-- Styled components
-- React Hooks (incl. Custom Hooks)
-- Markdown
+## Komendy (Node >= 22.23)
+```
+npm install
+npm run dev      # http://localhost:4321
+npm run build    # -> dist/
+```

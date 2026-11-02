@@ -1,0 +1,61 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Cta from '../components/Cta.astro';
+import PageHead from '../components/PageHead.astro';
+import { site } from '../data/site';
+import { gallery } from '../data/gallery';
+import { lightboxSrc } from '../data/lightbox';
+
+const big = await Promise.all(gallery.map((g) => lightboxSrc(g.src)));
+
+const schema = [
+  {
+    '@type': 'ImageGallery',
+    name: 'Galeria zdjęć – Mirosław Stach Firma Usługowa',
+    url: `${site.url}/galeria`,
+    author: { '@id': `${site.url}/#firma` },
+    image: gallery.map((g, i) => ({ '@type': 'ImageObject', contentUrl: new URL(big[i].big, site.url).href, caption: g.alt })),
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Strona główna', item: `${site.url}/` },
+      { '@type': 'ListItem', position: 2, name: 'Galeria', item: `${site.url}/galeria` },
+    ],
+  },
+];
+---
+
+<Base
+  title="Galeria zdjęć – realizacje robót ziemnych | Mirosław Stach"
+  description="Galeria zdjęć z realizacji: wykopy, korytowanie i niwelacja, wyburzenia, mulczowanie terenu, praca ładowarek i wozideł. Mirosław Stach Firma Usługowa."
+  schema={schema}
+>
+  <PageHead
+    title="Galeria zdjęć"
+    lead="Zdjęcia z naszych realizacji. Kliknij zdjęcie, aby je powiększyć."
+    image={gallery.find((g) => g.file === '20220511_152449.jpg')!.src}
+    crumbs={[{ href: '/', label: 'Strona główna' }, { label: 'Galeria' }]}
+  />
+
+  <section class="section">
+    <div class="wrap">
+      <ul class="gallery">
+        {
+          gallery.map((g, i) => (
+            <li>
+              <a href={big[i].big} data-mid={big[i].mid} data-lightbox data-alt={g.alt}>
+                <figure>
+                  <Image src={g.src} alt={g.alt} width={560} widths={[360, 560]} sizes="(max-width: 600px) 100vw, (max-width: 1000px) 50vw, 25vw" loading={i < 6 ? 'eager' : 'lazy'} />
+                </figure>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <Cta />
+</Base>

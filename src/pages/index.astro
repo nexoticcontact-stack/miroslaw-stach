@@ -1,0 +1,243 @@
+---
+import { Image, Picture } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import Faq from '../components/Faq.astro';
+import Cta from '../components/Cta.astro';
+import { site } from '../data/site';
+import { services } from '../data/services';
+import { byFile } from '../data/gallery';
+import { regions } from '../data/regions';
+import { lightboxSrc } from '../data/lightbox';
+import hero from '../assets/hero.png';
+
+const features = [
+  { href: '/uslugi/koparka-gasienicowa', icon: 'excavator', title: 'Usługi koparką', sub: 'gąsienicową i kołową' },
+  { href: '/uslugi/wyburzenia-rozbiorki', icon: 'demolition', title: 'Wyburzenia', sub: 'młot wyburzeniowy' },
+  { href: '/uslugi/wynajem-ladowarki', icon: 'loader', title: 'Wynajem ładowarek', sub: 'i wozideł budowlanych' },
+  { href: '/uslugi/ciagnik-beczkowoz-zamiatarka', icon: 'tractor', title: 'Ciągnik i mulczer', sub: 'beczka 10 000 l' },
+] as const;
+
+const why = byFile('20220516_114202.jpg');
+const realizacje = ['20220617_115517.jpg', 'IMG-20230406-WA0000.jpg', '20230401_155849.jpg', '20220812_164110.jpg', '20230303_091050.jpg', '20220511_152449.jpg'].map(byFile);
+const realLinks = await Promise.all(realizacje.map((g) => lightboxSrc(g.src)));
+
+const faq = [
+  {
+    q: 'Jakie usługi oferuje firma Mirosław Stach?',
+    a: 'Prace ziemne, budowlane i drogowe, korytowanie, odwodnienia terenów i wyburzenia. Do tego usługi koparką gąsienicową i kołową 18 t, wynajem ładowarek 8,5–25 t i wozideł 1,5–16 t, usługi ciągnikiem z przyczepą 10 m³ i beczką 10 000 l, mulczer leśny i zamiatarka uliczna.',
+  },
+  {
+    q: 'Gdzie działa firma?',
+    a: 'Działamy na terenie całej Polski. Mamy ponad 10 lat doświadczenia i setki zadowolonych klientów. Zakres prac, termin i dojazd ustalamy telefonicznie.',
+  },
+  {
+    q: 'Czy wynajmujecie maszyny z operatorem?',
+    a: 'Tak. Wozidła budowlane wynajmujemy z doświadczonymi operatorami lub bez. Szczegóły dla pozostałych maszyn ustalamy przy zamówieniu.',
+  },
+  {
+    q: 'Ile kosztują usługi koparką?',
+    a: 'Oferujemy konkurencyjne ceny dostosowane do indywidualnych potrzeb. Cena zależy od zakresu prac, maszyny, czasu pracy i dojazdu. Zadzwoń pod 794 742 706, aby uzyskać wycenę.',
+  },
+];
+---
+
+<Base
+  title="Roboty ziemne i wyburzenia – cała Polska | Mirosław Stach"
+  description="Roboty ziemne i wyburzenia w całej Polsce. Usługi koparką gąsienicową i kołową, wynajem ładowarek i wozideł, mulczer leśny. Ponad 10 lat doświadczenia."
+  schema={[{ '@type': 'FAQPage', mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) }]}
+>
+  <section class="hero">
+    <div class="hero__photo">
+      <Picture
+        src={hero}
+        alt="Koparka gąsienicowa firmy Mirosław Stach na hałdzie ziemi"
+        width={1920}
+        widths={[640, 1024, 1440, 1920]}
+        sizes="(max-width: 900px) 100vw, 62vw"
+        formats={['avif', 'webp']}
+        fallbackFormat="jpg"
+        quality={72}
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="hero__slash2" aria-hidden="true"></div>
+    <div class="hero__slash" aria-hidden="true"></div>
+    <div class="wrap hero__inner">
+      <div class="hero__text">
+        <h1>Roboty ziemne i wyburzenia <span class="light">Mirosław Stach – Firma Usługowa</span></h1>
+        <p class="hero__lead">
+          Zadowolenie klienta to nasz priorytet. Prace ziemne, budowlane i drogowe, korytowanie, odwodnienia terenów oraz wyburzenia na terenie całej Polski.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="/uslugi">Nasza oferta <Icon name="arrow" /></a>
+          <a class="btn btn--text" href={`tel:${site.phone}`}><Icon name="phone" /> {site.phoneDisplay}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <nav class="features" aria-label="Najważniejsze usługi">
+    <div class="wrap">
+      <ul>
+        {
+          features.map((f) => (
+            <li>
+              <a href={f.href}>
+                <Icon name={f.icon} />
+                <span><strong>{f.title}</strong><span>{f.sub}</span></span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </nav>
+
+  <section class="why" aria-labelledby="why-title">
+    <div class="why__photo">
+      <Image src={why.src} alt={why.alt} width={1200} widths={[640, 1200]} sizes="(max-width: 900px) 100vw, 50vw" />
+    </div>
+    <div class="wrap">
+      <div class="why__text">
+        <h2 id="why-title">Dlaczego my?</h2>
+        <p>
+          Firma Mirosław Stach to dynamicznie rozwijająca się firma usługowa specjalizująca się w branży robót ziemnych. Nasza firma działa na rynku od ponad 10 lat i cieszy się uznaniem wśród klientów, zarówno indywidualnych, jak i biznesowych.
+        </p>
+        <p>
+          Nasza oferta skierowana jest do klientów poszukujących profesjonalnej i kompleksowej obsługi z zakresu robót ziemnych. Dla naszej firmy najważniejsze jest zadowolenie klienta, dlatego dokładamy wszelkich starań, aby każde zlecenie było wykonane zgodnie z oczekiwaniami klienta.
+        </p>
+        <ul class="checks">
+          <li><Icon name="check" /> Zespół wykwalifikowanych i doświadczonych specjalistów</li>
+          <li><Icon name="check" /> Rzetelna i terminowa obsługa</li>
+          <li><Icon name="check" /> Nowoczesny, regularnie serwisowany sprzęt</li>
+          <li><Icon name="check" /> Konkurencyjne ceny i fachowa obsługa</li>
+        </ul>
+        <div class="why__stats">
+          <div><strong>10+</strong><span>lat doświadczenia</span></div>
+          <div><strong>Setki</strong><span>zadowolonych klientów</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="oferta-title">
+    <div class="wrap">
+      <div class="section__intro">
+        <h2 id="oferta-title">Nasza oferta</h2>
+        <p>
+          Nasza oferta obejmuje szeroki wachlarz usług, w tym m.in.: wykonywanie prac ziemnych, budowlanych i drogowych, korytowanie, odwodnienia terenów, wyburzenia oraz wiele innych. Posiadamy sprzęt o różnych rozmiarach, dzięki czemu jesteśmy w stanie sprostać nawet najbardziej wymagającym projektom.
+        </p>
+        <p>
+          Nasza flota maszynowa składa się z nowoczesnych i wydajnych urządzeń, które są regularnie serwisowane i poddawane przeglądom technicznym. Dzięki temu możemy zagwarantować naszym klientom nie tylko wysoką jakość wykonania usług, ale również bezpieczeństwo pracy na placu budowy.
+        </p>
+      </div>
+      <ul class="cards">
+        {
+          services.map((s) => {
+            const c = byFile(s.cover);
+            return (
+              <li>
+                <a class="card" href={`/uslugi/${s.slug}`}>
+                  <div class="card__img">
+                    <div class="card__clip">
+                      <Image src={c.src} alt={c.alt} width={640} widths={[400, 640]} sizes="(max-width: 640px) 100vw, 33vw" />
+                    </div>
+                    <span class="card__icon"><Icon name={s.icon} /></span>
+                  </div>
+                  <div class="card__body">
+                    <h3>{s.name}</h3>
+                    <p>{s.short}</p>
+                    <span class="card__more">Czytaj więcej <Icon name="arrow" /></span>
+                  </div>
+                </a>
+              </li>
+            );
+          })
+        }
+        <li>
+          <a class="card card--cta" href={`tel:${site.phone}`}>
+            <Icon name="phone" class="big" />
+            <h3>Nie wiesz, jakiej maszyny potrzebujesz?</h3>
+            <p>Zadzwoń i opisz prace – doradzimy i przygotujemy wycenę.</p>
+            <span class="card__phone">{site.phoneDisplay}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band" aria-label="Gwarancja jakości">
+    <div class="wrap">
+      <p>Mirosław Stach Firma Usługowa – gwarancja jakości</p>
+      <a class="btn btn--light" href={`tel:${site.phone}`}><Icon name="phone" /> Zadzwoń: {site.phoneDisplay}</a>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="real-title">
+    <div class="wrap">
+      <div class="section__intro">
+        <h2 id="real-title">Nasze realizacje</h2>
+        <p>Zdjęcia z naszych prac: wykopy, place i drogi, wyburzenia, mulczowanie terenu i transport materiałów.</p>
+      </div>
+      <div class="mosaic">
+        {
+          realizacje.map((g, i) => (
+            <a href={realLinks[i].big} data-mid={realLinks[i].mid} data-lightbox data-alt={g.alt}>
+              <Image src={g.src} alt={g.alt} width={640} widths={[400, 640]} sizes="(max-width: 720px) 50vw, 33vw" />
+            </a>
+          ))
+        }
+      </div>
+      <div class="more-row">
+        <a class="btn btn--primary" href="/galeria">Przejdź do galerii <Icon name="arrow" /></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="obszar-title">
+    <div class="wrap">
+      <div class="section__intro">
+        <h2 id="obszar-title">Obszar działania</h2>
+        <p>Działamy na terenie całej Polski. Siedzibę mamy w Małopolsce, blisko granicy ze Śląskiem.</p>
+      </div>
+      <ul class="regions">
+        {
+          regions.map((r) => {
+            const c = byFile(r.cover);
+            return (
+              <li>
+                <a class="region" href={`/${r.slug}`}>
+                  <Image src={c.src} alt="" width={720} widths={[400, 720]} sizes="(max-width: 860px) 100vw, 33vw" />
+                  <h3>{r.name}</h3>
+                  <p>{r.cities.slice(0, 5).join(", ")} i okolice</p>
+                  <span class="card__more">Roboty ziemne – {r.name} <Icon name="arrow" /></span>
+                </a>
+              </li>
+            );
+          })
+        }
+        <li>
+          <a class="region region--pl" href={`tel:${site.phone}`}>
+            <h3>Cała Polska</h3>
+            <p>Działamy na terenie całej Polski. Termin i dojazd ustalamy telefonicznie.</p>
+            <span class="card__more">Zadzwoń: {site.phoneDisplay} <Icon name="arrow" /></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="faq-title">
+    <div class="wrap two-col">
+      <div class="section__intro">
+        <h2 id="faq-title">Najczęstsze pytania</h2>
+        <p>Nie znalazłeś odpowiedzi? Zadzwoń: <a href={`tel:${site.phone}`}>{site.phoneDisplay}</a>.</p>
+      </div>
+      <Faq items={faq} />
+    </div>
+  </section>
+
+  <Cta />
+</Base>
