@@ -1481,3 +1481,20 @@ p {
   height: 54px;
   margin-bottom: 14px;
 }
+/* podgląd: stały obszar, żeby miniatura i ostra wersja miały ten sam rozmiar */
+.lightbox__img {
+  width: 100%;
+  height: calc(100vh - 140px);
+  max-height: none;
+  object-fit: contain;
+  border-radius: 0;
+  transition: filter 0.25s;
+}
+.lightbox__img.is-loading {
+  filter: blur(6px);
+}
+@media (max-width: 720px) {
+  .lightbox__img {
+    height: calc(100vh - 180px);
+  }
+}

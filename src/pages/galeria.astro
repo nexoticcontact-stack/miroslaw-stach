@@ -1,12 +1,13 @@
 ---
-import { Image, getImage } from 'astro:assets';
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Cta from '../components/Cta.astro';
 import PageHead from '../components/PageHead.astro';
 import { site } from '../data/site';
 import { gallery } from '../data/gallery';
+import { lightboxSrc } from '../data/lightbox';
 
-const big = await Promise.all(gallery.map((g) => getImage({ src: g.src, width: 1600, format: 'webp', quality: 72 })));
+const big = await Promise.all(gallery.map((g) => lightboxSrc(g.src)));
 
 const schema = [
   {
@@ -14,7 +15,7 @@ const schema = [
     name: 'Galeria zdjęć – Mirosław Stach Firma Usługowa',
     url: `${site.url}/galeria`,
     author: { '@id': `${site.url}/#firma` },
-    image: gallery.map((g, i) => ({ '@type': 'ImageObject', contentUrl: new URL(big[i].src, site.url).href, caption: g.alt })),
+    image: gallery.map((g, i) => ({ '@type': 'ImageObject', contentUrl: new URL(big[i].big, site.url).href, caption: g.alt })),
   },
   {
     '@type': 'BreadcrumbList',
@@ -43,7 +44,7 @@ const schema = [
         {
           gallery.map((g, i) => (
             <li>
-              <a href={big[i].src} data-lightbox data-alt={g.alt}>
+              <a href={big[i].big} data-mid={big[i].mid} data-lightbox data-alt={g.alt}>
                 <figure>
                   <Image src={g.src} alt={g.alt} width={560} widths={[360, 560]} sizes="(max-width: 600px) 100vw, (max-width: 1000px) 50vw, 25vw" loading={i < 6 ? 'eager' : 'lazy'} />
                   <figcaption>{g.alt}</figcaption>

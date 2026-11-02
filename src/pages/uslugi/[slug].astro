@@ -1,5 +1,5 @@
 ---
-import { Image, getImage } from 'astro:assets';
+import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
 import Faq from '../../components/Faq.astro';
@@ -8,6 +8,7 @@ import PageHead from '../../components/PageHead.astro';
 import { site } from '../../data/site';
 import { services, type Service } from '../../data/services';
 import { byFile, byTag } from '../../data/gallery';
+import { lightboxSrc } from '../../data/lightbox';
 
 export function getStaticPaths() {
   return services.map((s) => ({ params: { slug: s.slug }, props: { s } }));
@@ -16,7 +17,7 @@ export function getStaticPaths() {
 const { s } = Astro.props as { s: Service };
 const cover = byFile(s.cover);
 const photos = byTag(s.tag, 6).filter((g) => g.file !== s.cover).slice(0, 4);
-const photoLinks = await Promise.all(photos.map((g) => getImage({ src: g.src, width: 1600, format: 'webp', quality: 72 })));
+const photoLinks = await Promise.all(photos.map((g) => lightboxSrc(g.src)));
 const related = services.filter((x) => x.slug !== s.slug);
 const url = `${site.url}/uslugi/${s.slug}`;
 
@@ -69,7 +70,7 @@ const schema = [
               <h2>Zdjęcia z realizacji</h2>
               <div class="photos">
                 {photos.map((g, i) => (
-                  <a href={photoLinks[i].src} data-lightbox data-alt={g.alt}>
+                  <a href={photoLinks[i].big} data-mid={photoLinks[i].mid} data-lightbox data-alt={g.alt}>
                     <Image src={g.src} alt={g.alt} width={720} widths={[400, 720]} sizes="(max-width: 980px) 50vw, 30vw" />
                   </a>
                 ))}

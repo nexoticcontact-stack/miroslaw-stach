@@ -1,5 +1,5 @@
 ---
-import { Image, Picture, getImage } from 'astro:assets';
+import { Image, Picture } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import Faq from '../components/Faq.astro';
@@ -7,6 +7,7 @@ import Cta from '../components/Cta.astro';
 import { site } from '../data/site';
 import { services } from '../data/services';
 import { byFile } from '../data/gallery';
+import { lightboxSrc } from '../data/lightbox';
 import hero from '../assets/hero.png';
 
 const features = [
@@ -18,7 +19,7 @@ const features = [
 
 const why = byFile('20220516_114202.jpg');
 const realizacje = ['20220617_115517.jpg', 'IMG-20230406-WA0000.jpg', '20230401_155849.jpg', '20220812_164110.jpg', '20230303_091050.jpg', '20220511_152449.jpg'].map(byFile);
-const realLinks = await Promise.all(realizacje.map((g) => getImage({ src: g.src, width: 1600, format: 'webp', quality: 72 })));
+const realLinks = await Promise.all(realizacje.map((g) => lightboxSrc(g.src)));
 
 const faq = [
   {
@@ -178,7 +179,7 @@ const faq = [
       <div class="mosaic">
         {
           realizacje.map((g, i) => (
-            <a href={realLinks[i].src} data-lightbox data-alt={g.alt}>
+            <a href={realLinks[i].big} data-mid={realLinks[i].mid} data-lightbox data-alt={g.alt}>
               <Image src={g.src} alt={g.alt} width={640} widths={[400, 640]} sizes="(max-width: 720px) 50vw, 33vw" />
             </a>
           ))
