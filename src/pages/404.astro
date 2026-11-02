@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { services } from '../data/services';
+---
+
+<Base title="Nie znaleziono strony | Mirosław Stach" description="Ta strona nie istnieje. Przejdź do usług lub skontaktuj się z nami." noindex>
+  <section class="page-head on-dark">
+    <div class="wrap">
+      <span class="eyebrow">Błąd 404</span>
+      <h1>Tu jeszcze nic nie wykopaliśmy</h1>
+      <p class="lead">Strona, której szukasz, nie istnieje albo zmieniła adres.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="/">Strona główna <Icon name="arrow" /></a>
+        <a class="btn btn--ghost" href="/uslugi">Usługi</a>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <ul class="related">
+        {services.map((s) => <li><a href={`/uslugi/${s.slug}`}>{s.name} <span>{s.no}</span></a></li>)}
+      </ul>
+    </div>
+  </section>
+</Base>

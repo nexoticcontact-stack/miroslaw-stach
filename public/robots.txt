@@ -1,3 +1,21 @@
-# https://www.robotstxt.org/robotstxt.html
+# Mirosław Stach Firma Usługowa – https://www.miroslawstach.pl
+# Wyszukiwarki i asystenci AI mają pełny dostęp: chcemy, żeby informacje o firmie były cytowane poprawnie.
+
 User-agent: *
-Disallow:
+Allow: /
+
+# Boty AI – jawnie dopuszczone (wyszukiwanie i odpowiedzi w ChatGPT, Claude, Perplexity, Gemini, Copilot)
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://www.miroslawstach.pl/sitemap-index.xml

@@ -1,0 +1,130 @@
+---
+import { Image, getImage } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import Faq from '../../components/Faq.astro';
+import Cta from '../../components/Cta.astro';
+import { site, area } from '../../data/site';
+import { services, type Service } from '../../data/services';
+import { byFile, byTag } from '../../data/gallery';
+
+export function getStaticPaths() {
+  return services.map((s) => ({ params: { slug: s.slug }, props: { s } }));
+}
+
+const { s } = Astro.props as { s: Service };
+const cover = byFile(s.cover);
+const photos = byTag(s.tag, 6).filter((g) => g.file !== s.cover).slice(0, 4);
+const photoLinks = await Promise.all(photos.map((g) => getImage({ src: g.src, width: 1600, format: 'webp', quality: 72 })));
+const related = services.filter((x) => x.slug !== s.slug);
+const url = `${site.url}/uslugi/${s.slug}`;
+
+const schema = [
+  {
+    '@type': 'Service',
+    '@id': `${url}#usluga`,
+    name: s.h1,
+    serviceType: s.name,
+    description: s.lead,
+    url,
+    provider: { '@id': `${site.url}/#firma` },
+    areaServed: [area.center, ...area.towns].map((t) => ({ '@type': 'City', name: t.name })),
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Strona główna', item: `${site.url}/` },
+      { '@type': 'ListItem', position: 2, name: 'Usługi', item: `${site.url}/uslugi` },
+      { '@type': 'ListItem', position: 3, name: s.h1, item: url },
+    ],
+  },
+  {
+    '@type': 'FAQPage',
+    mainEntity: s.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  },
+];
+---
+
+<Base title={s.title} description={s.description} schema={schema} ogImage={cover.src}>
+  <section class="page-head page-head--img on-dark">
+    <div class="page-head__img">
+      <Image src={cover.src} alt="" width={1920} widths={[640, 1280, 1920]} quality={55} sizes="100vw" loading="eager" fetchpriority="high" />
+    </div>
+    <div class="wrap">
+      <ol class="crumbs">
+        <li><a href="/">Strona główna</a></li>
+        <li><a href="/uslugi">Usługi</a></li>
+        <li aria-current="page">{s.name}</li>
+      </ol>
+      <span class="eyebrow">Usługa {s.no}</span>
+      <h1>{s.h1}</h1>
+      <p class="lead">{s.lead}</p>
+    </div>
+  </section>
+  <div class="hazard" aria-hidden="true"></div>
+
+  <section class="section">
+    <div class="wrap svc">
+      <div class="prose">
+        <h2>Zakres prac</h2>
+        <ul class="checklist">
+          {s.scope.map((x) => <li>{x.charAt(0).toUpperCase() + x.slice(1)}</li>)}
+        </ul>
+
+        <h2>Jak pracujemy</h2>
+        {s.body.map((p) => <p>{p}</p>)}
+        {s.forWhom && <p><strong>Dla kogo:</strong> {s.forWhom}</p>}
+
+        {
+          photos.length > 0 && (
+            <>
+              <h2>Zdjęcia z realizacji</h2>
+              <div class="photos">
+                {photos.map((g, i) => (
+                  <a href={photoLinks[i].src} data-lightbox data-alt={g.alt}>
+                    <Image src={g.src} alt={g.alt} width={720} widths={[400, 720]} sizes="(max-width: 980px) 50vw, 30vw" />
+                  </a>
+                ))}
+              </div>
+            </>
+          )
+        }
+
+        <h2>Pytania o: {s.name.toLowerCase()}</h2>
+        <Faq items={s.faq} />
+      </div>
+
+      <aside class="svc__aside">
+        <div class="plate" aria-label={`Parametry: ${s.name}`}>
+          <div class="plate__head">
+            <span class="plate__title">{s.name}</span>
+            <span class="mono">{s.no}</span>
+          </div>
+          <dl>
+            {s.specs.map((sp) => <div class="plate__row"><dt>{sp.label}</dt><dd>{sp.value}</dd></div>)}
+          </dl>
+          <div class="plate__foot"><span>M. Stach</span><span>Przeginia</span></div>
+        </div>
+        <div class="callcard on-dark">
+          <span class="mono">Wycena i terminy</span>
+          <a class="callcard__phone" href={`tel:${site.phone}`}>{site.phoneDisplay}</a>
+          <p>Opisz zakres prac i lokalizację. Dobierzemy sprzęt i podamy termin.</p>
+          <a class="btn btn--primary" href={`tel:${site.phone}`}><Icon name="phone" /> Zadzwoń</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section--paper2" aria-labelledby="inne-title">
+    <div class="wrap">
+      <span class="eyebrow">Pozostałe usługi</span>
+      <h2 id="inne-title" class="mt-0">Co jeszcze robimy</h2>
+      <div class="ruler" aria-hidden="true"></div>
+      <ul class="related">
+        {related.map((r) => <li><a href={`/uslugi/${r.slug}`}>{r.name} <span>{r.no}</span></a></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <Cta />
+</Base>

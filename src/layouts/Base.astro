@@ -1,0 +1,198 @@
+---
+import '@fontsource-variable/archivo/wdth.css';
+import '@fontsource/jetbrains-mono/400.css';
+import '../styles/global.css';
+import { getImage } from 'astro:assets';
+import Brand from '../components/Brand.astro';
+import Icon from '../components/Icon.astro';
+import { site, area } from '../data/site';
+import { services } from '../data/services';
+import heroImg from '../assets/hero.png';
+
+interface Props {
+  title: string;
+  description: string;
+  schema?: Record<string, unknown>[];
+  ogImage?: ImageMetadata;
+  noindex?: boolean;
+}
+
+const { title, description, schema = [], ogImage, noindex = false } = Astro.props;
+const path = Astro.url.pathname.replace(/\/$/, '').replace(/\.html$/, '') || '/';
+const canonical = new URL(path, site.url).href.replace(/\/$/, '');
+const canonicalHref = path === '/' ? `${site.url}/` : canonical;
+
+const og = await getImage({ src: ogImage ?? heroImg, width: 1200, height: 630, format: 'jpg', quality: 80 });
+const ogUrl = new URL(og.src, site.url).href;
+
+const nav = [
+  { href: '/uslugi', label: 'Usługi' },
+  { href: '/obszar-dzialania', label: 'Obszar działania' },
+  { href: '/galeria', label: 'Realizacje' },
+  { href: '/kontakt', label: 'Kontakt' },
+];
+const isCurrent = (href: string) => path === href || path.startsWith(href + '/');
+
+const business = {
+  '@context': 'https://schema.org',
+  '@type': 'GeneralContractor',
+  '@id': `${site.url}/#firma`,
+  name: site.name,
+  alternateName: ['Mirosław Stach', 'Firma Usługowa – Roboty Ziemne – Mirosław Stach'],
+  description:
+    'Roboty ziemne, wyburzenia i rozbiórki, usługi koparką gąsienicową i kołową 18 t, wynajem ładowarek 8,5–25 t i wozideł 1,5–16 t, mulczer leśny, ciągnik z beczkowozem 10 000 l.',
+  url: `${site.url}/`,
+  telephone: site.phone,
+  email: site.email,
+  image: ogUrl,
+  logo: `${site.url}/favicon.svg`,
+  taxID: site.nip,
+  vatID: `PL${site.nip}`,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.address.street,
+    postalCode: site.address.postalCode,
+    addressLocality: site.address.city,
+    addressRegion: site.address.region,
+    addressCountry: site.address.country,
+  },
+  hasMap: site.mapsUrl,
+  areaServed: [area.center, ...area.towns].map((t) => ({ '@type': 'City', name: t.name })),
+  knowsAbout: ['roboty ziemne', 'wykopy pod fundamenty', 'korytowanie', 'niwelacja terenu', 'wyburzenia', 'rozbiórki', 'mulczowanie terenu', 'odwodnienie terenu'],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Usługi',
+    itemListElement: services.map((s) => ({
+      '@type': 'Offer',
+      itemOffered: { '@type': 'Service', name: s.h1, url: `${site.url}/uslugi/${s.slug}` },
+    })),
+  },
+  ...(site.foundingYear ? { foundingDate: String(site.foundingYear) } : {}),
+  ...(site.sameAs.length ? { sameAs: site.sameAs } : {}),
+};
+
+const website = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${site.url}/#strona`,
+  url: `${site.url}/`,
+  name: site.name,
+  inLanguage: 'pl-PL',
+  publisher: { '@id': `${site.url}/#firma` },
+};
+
+const ld = (o: unknown) => JSON.stringify(o).replace(/</g, '\\u003c');
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalHref} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <meta name="theme-color" content="#17181B" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalHref} />
+    <meta property="og:image" content={ogUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json" set:html={ld(business)} />
+    <script type="application/ld+json" set:html={ld(website)} />
+    {schema.map((s) => <script type="application/ld+json" set:html={ld({ '@context': 'https://schema.org', ...s })} />)}
+
+    <script src="/js/site.js" defer is:inline></script>
+  </head>
+  <body>
+    <a class="skip" href="#tresc">Przejdź do treści</a>
+
+    <div class="topbar">
+      <div class="wrap">
+        <span class="hide-sm">{site.address.street}, {site.address.postalCode} {site.address.city} · {site.address.region}</span>
+        <span>
+          <a href={`tel:${site.phone}`}>Tel. {site.phoneDisplay}</a>
+          <span class="hide-sm"> · <a href={`mailto:${site.email}`}>{site.email}</a></span>
+        </span>
+      </div>
+    </div>
+
+    <header class="header">
+      <div class="wrap">
+        <Brand />
+        <nav class="nav" id="nav" aria-label="Menu główne">
+          {nav.map((n) => (
+            <a href={n.href} aria-current={isCurrent(n.href) ? 'page' : undefined}>
+              {n.label}
+            </a>
+          ))}
+        </nav>
+        <a class="btn btn--primary header__call" href={`tel:${site.phone}`}>
+          <Icon name="phone" />
+          {site.phoneDisplay}
+        </a>
+        <button class="menu-btn" type="button" aria-controls="nav" aria-expanded="false" aria-label="Otwórz menu" data-menu>
+          <Icon name="menu" />
+        </button>
+      </div>
+    </header>
+
+    <main id="tresc">
+      <slot />
+    </main>
+
+    <footer class="footer">
+      <div class="wrap footer__top">
+        <div>
+          <Brand />
+          <p>Roboty ziemne, wyburzenia i wynajem maszyn budowlanych z operatorem. Przeginia, powiat krakowski i olkuski.</p>
+        </div>
+        <div>
+          <h2>Usługi</h2>
+          <ul>
+            {services.map((s) => <li><a href={`/uslugi/${s.slug}`}>{s.name}</a></li>)}
+          </ul>
+        </div>
+        <div>
+          <h2>Strona</h2>
+          <ul>
+            <li><a href="/">Strona główna</a></li>
+            {nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
+          </ul>
+        </div>
+        <div>
+          <h2>Kontakt</h2>
+          <address>
+            {site.name}<br />
+            {site.address.street}<br />
+            {site.address.postalCode} {site.address.city}<br />
+            woj. {site.address.region}<br />
+            NIP {site.nip}<br />
+            <a href={`tel:${site.phone}`}>Tel. {site.phoneDisplay}</a><br />
+            <a href={`mailto:${site.email}`}>{site.email}</a>
+          </address>
+        </div>
+      </div>
+      <div class="wrap footer__bottom">
+        <span>© {year} {site.name}</span>
+        <span>Projekt i realizacja: Marcin Izdebski</span>
+      </div>
+    </footer>
+
+    <a class="callbar" href={`tel:${site.phone}`}><Icon name="phone" /> Zadzwoń: {site.phoneDisplay}</a>
+  </body>
+</html>

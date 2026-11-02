@@ -1,0 +1,18 @@
+---
+import { site } from '../data/site';
+interface Props {
+  title?: string;
+}
+const { title = 'Masz robotę dla koparki? Zadzwoń.' } = Astro.props;
+---
+
+<section class="cta" aria-labelledby="cta-title">
+  <div class="wrap">
+    <h2 id="cta-title">{title}</h2>
+    <div>
+      <span class="mono">Telefon</span>
+      <a class="cta__phone" href={`tel:${site.phone}`}>{site.phoneDisplay}</a>
+      <span class="mono cta__mail">lub <a href={`mailto:${site.email}`}>{site.email}</a></span>
+    </div>
+  </div>
+</section>

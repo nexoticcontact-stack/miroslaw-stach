@@ -1,0 +1,101 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import AreaMap from '../components/AreaMap.astro';
+import Faq from '../components/Faq.astro';
+import Cta from '../components/Cta.astro';
+import { site, area } from '../data/site';
+import { services } from '../data/services';
+
+const km = (t: { lat: number; lon: number }) => {
+  const dx = (t.lon - area.center.lon) * 71.5;
+  const dy = (t.lat - area.center.lat) * 111.2;
+  return Math.round(Math.sqrt(dx * dx + dy * dy));
+};
+const towns = [...area.towns].sort((a, b) => km(a) - km(b));
+
+const faq = [
+  {
+    q: 'Czy dojeżdżacie do Olkusza i Krzeszowic?',
+    a: 'Tak. Olkusz i Krzeszowice leżą kilkanaście kilometrów od naszej bazy w Przegini, więc to jeden z głównych obszarów, na których pracujemy.',
+  },
+  {
+    q: 'Czy wykonujecie zlecenia w Krakowie?',
+    a: 'Tak, zwłaszcza w zachodnich i północnych okolicach Krakowa (Zabierzów, Wielka Wieś). Przy zleceniach w samym Krakowie ustalamy termin i dojazd telefonicznie.',
+  },
+  {
+    q: 'A jeśli mojej miejscowości nie ma na liście?',
+    a: 'Zadzwoń pod 794 742 706. Lista pokazuje najbliższe miejscowości, ale realizujemy też zlecenia dalej, w zależności od zakresu prac.',
+  },
+];
+
+const schema = [
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Strona główna', item: `${site.url}/` },
+      { '@type': 'ListItem', position: 2, name: 'Obszar działania', item: `${site.url}/obszar-dzialania` },
+    ],
+  },
+  { '@type': 'FAQPage', mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+
+<Base
+  title="Usługi koparką Olkusz, Krzeszowice, Skała, Kraków – zasięg"
+  description="Roboty ziemne i usługi koparką w okolicy Przegini: Olkusz, Krzeszowice, Skała, Jerzmanowice, Zabierzów, Trzebinia, Wolbrom, Kraków. Sprawdź, gdzie dojeżdżamy."
+  schema={schema}
+>
+  <section class="page-head on-dark">
+    <div class="wrap">
+      <ol class="crumbs">
+        <li><a href="/">Strona główna</a></li>
+        <li aria-current="page">Obszar działania</li>
+      </ol>
+      <span class="eyebrow">Zasięg</span>
+      <h1>Usługi koparką w okolicy Przegini</h1>
+      <p class="lead">
+        Baza firmy jest w Przegini (gm. Jerzmanowice-Przeginia, powiat krakowski). Roboty ziemne, wyburzenia i wynajem maszyn wykonujemy w Olkuszu, Krzeszowicach, Skale, Jerzmanowicach, Zabierzowie i okolicach Krakowa.
+      </p>
+    </div>
+  </section>
+  <div class="hazard" aria-hidden="true"></div>
+
+  <section class="section section--dark on-dark">
+    <div class="wrap area">
+      <div>
+        <span class="eyebrow">Odległości od bazy</span>
+        <h2>Gdzie dojeżdżamy</h2>
+        <ul class="km-list">
+          {towns.map((t) => <li><span>{t.name}</span><span class="mono">ok. {km(t)} km</span></li>)}
+        </ul>
+        <p class="mono km-note">Odległości w linii prostej, orientacyjne.</p>
+      </div>
+      <AreaMap />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap two-col">
+      <div>
+        <span class="eyebrow">Usługi w regionie</span>
+        <h2>Co robimy na miejscu</h2>
+      </div>
+      <ul class="related">
+        {services.map((s) => <li><a href={`/uslugi/${s.slug}`}>{s.name} <Icon name="arrow" /></a></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--paper2">
+    <div class="wrap two-col">
+      <div>
+        <span class="eyebrow">Pytania</span>
+        <h2>Dojazd i zasięg</h2>
+      </div>
+      <Faq items={faq} />
+    </div>
+  </section>
+
+  <Cta />
+</Base>

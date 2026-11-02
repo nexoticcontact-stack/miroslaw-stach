@@ -9,7 +9,6 @@
 /coverage
 
 # production
-/build
 
 # misc
 .DS_Store
@@ -28,3 +27,7 @@ yarn-error.log*
 # dane dostępowe - NIE commitować
 Dane.txt
 *.env
+
+# astro
+dist/
+.astro/
