@@ -1644,3 +1644,19 @@ p {
     overflow-wrap: normal;
   }
 }
+/* kontrast tekstu na pomarańczowym tle */
+.card--cta p,
+.region--pl p,
+.band p {
+  color: #fff;
+}
+/* lepsze łamanie linii: równe nagłówki, bez sierot w akapitach */
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+p,
+li {
+  text-wrap: pretty;
+}

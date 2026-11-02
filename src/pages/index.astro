@@ -97,7 +97,7 @@ const faq = [
 
   <section class="why" aria-labelledby="why-title">
     <div class="why__photo">
-      <Image src={why.src} alt={why.alt} width={1200} widths={[640, 1200]} sizes="(max-width: 900px) 100vw, 50vw" />
+      <Image src={why.src} alt={why.alt} width={1200} widths={[480, 800, 1200]} sizes="(max-width: 900px) 100vw, 50vw" />
     </div>
     <div class="wrap">
       <div class="why__text">
@@ -142,7 +142,7 @@ const faq = [
                 <a class="card" href={`/uslugi/${s.slug}`}>
                   <div class="card__img">
                     <div class="card__clip">
-                      <Image src={c.src} alt={c.alt} width={640} widths={[400, 640]} sizes="(max-width: 640px) 100vw, 33vw" />
+                      <Image src={c.src} alt={c.alt} width={640} widths={[360, 480, 640]} sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 290px" />
                     </div>
                     <span class="card__icon"><Icon name={s.icon} /></span>
                   </div>
