@@ -70,7 +70,7 @@
     var alt = a.getAttribute('data-alt') || '';
     var full = preload(i);
     img.alt = alt;
-    cap.textContent = alt + '  ·  ' + (i + 1) + ' / ' + links.length;
+    cap.textContent = (i + 1) + ' / ' + links.length;
 
     if (full.complete && full.naturalWidth) {
       img.src = full.src;
