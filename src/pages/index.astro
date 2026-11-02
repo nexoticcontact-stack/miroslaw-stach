@@ -2,216 +2,216 @@
 import { Image, Picture, getImage } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
-import AreaMap from '../components/AreaMap.astro';
 import Faq from '../components/Faq.astro';
 import Cta from '../components/Cta.astro';
+import AreaMap from '../components/AreaMap.astro';
 import { site, area } from '../data/site';
 import { services } from '../data/services';
 import { byFile } from '../data/gallery';
 import hero from '../assets/hero.png';
 
+const features = [
+  { href: '/uslugi/koparka-gasienicowa', icon: 'excavator', title: 'Usługi koparką', sub: 'gąsienicową i kołową' },
+  { href: '/uslugi/wyburzenia-rozbiorki', icon: 'demolition', title: 'Wyburzenia', sub: 'młot wyburzeniowy' },
+  { href: '/uslugi/wynajem-ladowarki', icon: 'loader', title: 'Wynajem ładowarek', sub: 'i wozideł budowlanych' },
+  { href: '/uslugi/ciagnik-beczkowoz-zamiatarka', icon: 'tractor', title: 'Ciągnik i mulczer', sub: 'beczka 10 000 l' },
+] as const;
+
+const why = byFile('20220516_114202.jpg');
+const realizacje = ['20220617_115517.jpg', 'IMG-20230406-WA0000.jpg', '20230401_155849.jpg', '20220812_164110.jpg', '20230303_091050.jpg', '20220511_152449.jpg'].map(byFile);
+const realLinks = await Promise.all(realizacje.map((g) => getImage({ src: g.src, width: 1600, format: 'webp', quality: 72 })));
+
 const faq = [
   {
-    q: 'Jakie usługi wykonuje firma Mirosław Stach?',
-    a: 'Roboty ziemne (wykopy pod fundamenty, baseny i instalacje, korytowanie, niwelacja terenu, odwodnienia), wyburzenia i rozbiórki, mulczowanie terenu mulczerem leśnym, a także wynajem ładowarek 8,5–25 t, wozideł 1,5–16 t oraz usługi ciągnikiem z przyczepą 10 m³ i beczkowozem 10 000 l.',
+    q: 'Jakie usługi oferuje firma Mirosław Stach?',
+    a: 'Prace ziemne, budowlane i drogowe, korytowanie, odwodnienia terenów i wyburzenia. Do tego usługi koparką gąsienicową i kołową 18 t, wynajem ładowarek 8,5–25 t i wozideł 1,5–16 t, usługi ciągnikiem z przyczepą 10 m³ i beczką 10 000 l, mulczer leśny i zamiatarka uliczna.',
   },
   {
-    q: 'Gdzie działacie?',
-    a: `Baza firmy jest w Przegini (gmina Jerzmanowice-Przeginia, powiat krakowski). Pracujemy w okolicy: ${area.towns.map((t) => t.name).join(', ')}. O dalszych zleceniach najlepiej porozmawiać telefonicznie.`,
+    q: 'Gdzie działa firma?',
+    a: `Firma ma siedzibę w Przegini (gmina Jerzmanowice-Przeginia, powiat krakowski). Pracujemy w okolicy: ${area.towns.map((t) => t.name).join(', ')}.`,
   },
   {
-    q: 'Czy maszyny są wynajmowane z operatorem?',
-    a: 'Koparki pracują z naszym operatorem. Wozidła budowlane wynajmujemy z operatorem albo bez. Szczegóły dla ładowarek ustalamy przy zamówieniu.',
+    q: 'Czy wynajmujecie maszyny z operatorem?',
+    a: 'Tak. Wozidła budowlane wynajmujemy z doświadczonymi operatorami lub bez. Szczegóły dla pozostałych maszyn ustalamy przy zamówieniu.',
   },
   {
-    q: 'Ile kosztuje godzina pracy koparki?',
-    a: 'Cena zależy od maszyny, czasu pracy, dojazdu, rodzaju gruntu i tego, czy trzeba wywieźć urobek. Zadzwoń pod 794 742 706 i opisz zakres prac, a podamy konkretną wycenę.',
-  },
-  {
-    q: 'Dla kogo pracujecie?',
-    a: 'Dla klientów prywatnych (np. przygotowanie działki i wykopy pod dom), firm budowlanych, deweloperów, inwestorów i instytucji.',
+    q: 'Ile kosztują usługi koparką?',
+    a: 'Oferujemy konkurencyjne ceny dostosowane do indywidualnych potrzeb. Cena zależy od zakresu prac, maszyny, czasu pracy i dojazdu. Zadzwoń pod 794 742 706, aby uzyskać wycenę.',
   },
 ];
-
-const strip = ['20220617_115517.jpg', 'IMG-20230406-WA0000.jpg', '20230401_155849.jpg', '20220812_164110.jpg', '20230303_091050.jpg'].map(byFile);
-const stripLinks = await Promise.all(strip.map((g) => getImage({ src: g.src, width: 1600, format: 'webp', quality: 72 })));
 ---
 
 <Base
   title="Roboty ziemne Przeginia, Olkusz, Krzeszowice | Mirosław Stach"
-  description="Roboty ziemne, wyburzenia, usługi koparką gąsienicową i kołową 18 t, wynajem ładowarek i wozideł, mulczer leśny. Przeginia, Olkusz, Krzeszowice, Kraków. Tel. 794 742 706."
+  description="Mirosław Stach Firma Usługowa – roboty ziemne, wyburzenia, usługi koparką gąsienicową i kołową, wynajem ładowarek i wozideł, mulczer leśny. Przeginia, tel. 794 742 706."
   schema={[{ '@type': 'FAQPage', mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) }]}
 >
-  <!-- HERO -->
-  <section class="hero on-dark">
-    <div class="hero__img">
+  <section class="hero">
+    <div class="hero__photo">
       <Picture
         src={hero}
-        alt="Koparka gąsienicowa na hałdzie ziemi, w tle wieś i pola"
-        width={1920} widths={[640, 1024, 1440, 1920]} fallbackFormat="jpg" quality={72}
-        sizes="100vw"
+        alt="Koparka gąsienicowa firmy Mirosław Stach na hałdzie ziemi"
+        width={1920}
+        widths={[640, 1024, 1440, 1920]}
+        sizes="(max-width: 900px) 100vw, 62vw"
         formats={['avif', 'webp']}
+        fallbackFormat="jpg"
+        quality={72}
         loading="eager"
         fetchpriority="high"
       />
     </div>
+    <div class="hero__slash2" aria-hidden="true"></div>
+    <div class="hero__slash" aria-hidden="true"></div>
     <div class="wrap hero__inner">
-      <div>
-        <span class="eyebrow">Przeginia · powiat krakowski i olkuski</span>
-        <h1>Roboty ziemne <span class="accent">i wyburzenia</span></h1>
-        <p class="lead">
-          Wykopy, korytowanie, niwelacja, rozbiórki i mulczowanie terenu. Koparki z operatorem, ładowarki, wozidła i ciągnik z beczkowozem.
-          Pracujemy w Przegini, Olkuszu, Krzeszowicach, Skale i okolicach Krakowa.
+      <div class="hero__text">
+        <h1>Roboty ziemne i wyburzenia <span class="light">Mirosław Stach – Firma Usługowa</span></h1>
+        <p class="hero__lead">
+          Zadowolenie klienta to nasz priorytet. Prace ziemne, budowlane i drogowe, korytowanie, odwodnienia terenów oraz wyburzenia w Przegini i okolicach.
         </p>
         <div class="hero__actions">
-          <a class="btn btn--primary" href={`tel:${site.phone}`}><Icon name="phone" /> {site.phoneDisplay}</a>
-          <a class="btn btn--ghost" href="/uslugi">Zobacz usługi <Icon name="arrow" /></a>
+          <a class="btn btn--primary" href="/uslugi">Nasza oferta <Icon name="arrow" /></a>
+          <a class="btn btn--text" href={`tel:${site.phone}`}><Icon name="phone" /> {site.phoneDisplay}</a>
         </div>
       </div>
-
-      <aside class="plate" aria-label="Park maszynowy – najważniejsze parametry">
-        <div class="plate__head">
-          <span class="plate__title">Park maszynowy</span>
-          <span class="mono">M. Stach</span>
-        </div>
-        <dl>
-          <div class="plate__row"><dt>Koparka kołowa</dt><dd>18 t</dd></div>
-          <div class="plate__row"><dt>Ładowarki</dt><dd>8,5–25 t</dd></div>
-          <div class="plate__row"><dt>Wozidła</dt><dd>1,5–16 t</dd></div>
-          <div class="plate__row"><dt>Beczkowóz</dt><dd>10 000 l</dd></div>
-          <div class="plate__row"><dt>Przyczepa</dt><dd>10 m³</dd></div>
-        </dl>
-        <div class="plate__foot"><span>Przeginia 87</span><span>NIP {site.nip}</span></div>
-      </aside>
     </div>
   </section>
-  <div class="hazard" aria-hidden="true"></div>
 
-  <!-- USŁUGI -->
-  <section class="section" aria-labelledby="uslugi-title">
+  <nav class="features" aria-label="Najważniejsze usługi">
     <div class="wrap">
-      <div class="section__head">
-        <div>
-          <span class="eyebrow">Usługi</span>
-          <h2 id="uslugi-title">Siedem rodzajów pracy, jeden telefon</h2>
-        </div>
-        <p>
-          Przygotowanie działki pod dom, wykop pod fundamenty, rozbiórka starej stodoły albo droga na placu budowy. Dobieramy maszynę do zadania i przyjeżdżamy z operatorem.
-        </p>
-      </div>
-      <ul class="sheet">
+      <ul>
         {
-          services.map((s) => (
-            <li class="sheet__item">
-              <a class="sheet__link" href={`/uslugi/${s.slug}`}>
-                <span class="sheet__no">{s.no}</span>
-                <span class="sheet__name">{s.name}</span>
-                <span class="sheet__desc">{s.scope.slice(0, 3).join(' · ')}</span>
-                <span class="sheet__spec">{s.key}</span>
-                <span class="sheet__arrow" aria-hidden="true"><Icon name="arrow" /></span>
+          features.map((f) => (
+            <li>
+              <a href={f.href}>
+                <Icon name={f.icon} />
+                <span><strong>{f.title}</strong><span>{f.sub}</span></span>
               </a>
             </li>
           ))
         }
       </ul>
     </div>
+  </nav>
+
+  <section class="why" aria-labelledby="why-title">
+    <div class="why__photo">
+      <Image src={why.src} alt={why.alt} width={1200} widths={[640, 1200]} sizes="(max-width: 900px) 100vw, 50vw" />
+    </div>
+    <div class="wrap">
+      <div class="why__text">
+        <h2 id="why-title">Dlaczego my?</h2>
+        <p>
+          Firma Mirosław Stach to dynamicznie rozwijająca się firma usługowa zlokalizowana w Przegini, specjalizująca się w branży robót ziemnych. Nasza firma działa na rynku od ponad 7 lat i cieszy się uznaniem wśród klientów, zarówno indywidualnych, jak i biznesowych.
+        </p>
+        <p>
+          Nasza oferta skierowana jest do klientów poszukujących profesjonalnej i kompleksowej obsługi z zakresu robót ziemnych. Dla naszej firmy najważniejsze jest zadowolenie klienta, dlatego dokładamy wszelkich starań, aby każde zlecenie było wykonane zgodnie z oczekiwaniami klienta.
+        </p>
+        <ul class="checks">
+          <li><Icon name="check" /> Zespół wykwalifikowanych i doświadczonych specjalistów</li>
+          <li><Icon name="check" /> Rzetelna i terminowa obsługa</li>
+          <li><Icon name="check" /> Nowoczesny, regularnie serwisowany sprzęt</li>
+          <li><Icon name="check" /> Konkurencyjne ceny i fachowa obsługa</li>
+        </ul>
+      </div>
+    </div>
   </section>
 
-  <!-- PARAMETRY -->
-  <section class="section section--dark on-dark" aria-labelledby="dane-title">
+  <section class="section section--alt" aria-labelledby="oferta-title">
     <div class="wrap">
-      <div class="section__head">
-        <div>
-          <span class="eyebrow">Sprzęt</span>
-          <h2 id="dane-title">Maszyny dobrane do skali budowy</h2>
-        </div>
+      <div class="section__intro">
+        <h2 id="oferta-title">Nasza oferta</h2>
         <p>
-          Od małego wozidła, które zmieści się na prywatnej działce, po ładowarkę 25 t do szybkiego załadunku na dużym placu. Sprzęt jest regularnie serwisowany i przechodzi przeglądy techniczne.
+          Nasza oferta obejmuje szeroki wachlarz usług, w tym m.in.: wykonywanie prac ziemnych, budowlanych i drogowych, korytowanie, odwodnienia terenów, wyburzenia oraz wiele innych. Posiadamy sprzęt o różnych rozmiarach, dzięki czemu jesteśmy w stanie sprostać nawet najbardziej wymagającym projektom.
+        </p>
+        <p>
+          Nasza flota maszynowa składa się z nowoczesnych i wydajnych urządzeń, które są regularnie serwisowane i poddawane przeglądom technicznym. Dzięki temu możemy zagwarantować naszym klientom nie tylko wysoką jakość wykonania usług, ale również bezpieczeństwo pracy na placu budowy.
         </p>
       </div>
-      <div class="stats">
-        <div class="stat"><div class="stat__value">18<small>t</small></div><div class="stat__label">Koparka kołowa z młotem wyburzeniowym</div></div>
-        <div class="stat"><div class="stat__value">25<small>t</small></div><div class="stat__label">Największa ładowarka (od 8,5 t)</div></div>
-        <div class="stat"><div class="stat__value">16<small>t</small></div><div class="stat__label">Ładowność wozideł (od 1,5 t)</div></div>
-        <div class="stat"><div class="stat__value">10k<small>l</small></div><div class="stat__label">Beczkowóz do polewania dróg</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- JAK PRACUJEMY -->
-  <section class="section" aria-labelledby="jak-title">
-    <div class="wrap">
-      <div class="section__head">
-        <div>
-          <span class="eyebrow">Jak to wygląda</span>
-          <h2 id="jak-title">Od telefonu do gotowego wykopu</h2>
-        </div>
-        <p>Bez formularzy i czekania na odpowiedź mailem. Większość zleceń zaczyna się od krótkiej rozmowy.</p>
-      </div>
-      <ol class="steps">
-        <li class="step">
-          <h3>Dzwonisz i opisujesz prace</h3>
-          <p>Co ma powstać, gdzie leży działka, jaki jest dojazd. Jeśli masz projekt lub szkic, to jeszcze lepiej.</p>
-        </li>
-        <li class="step">
-          <h3>Dobieramy sprzęt i termin</h3>
-          <p>Proponujemy maszynę lub zestaw maszyn, np. koparkę z wozidłem, i ustalamy, kiedy możemy wjechać.</p>
-        </li>
-        <li class="step">
-          <h3>Przyjeżdżamy z operatorem</h3>
-          <p>Wykonujemy prace zgodnie z ustaleniami: wykop, niwelację, rozbiórkę czy mulczowanie.</p>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- REALIZACJE -->
-  <section class="section section--paper2" aria-labelledby="real-title">
-    <div class="wrap">
-      <div class="section__head">
-        <div>
-          <span class="eyebrow">Realizacje</span>
-          <h2 id="real-title">Zdjęcia z naszych budów</h2>
-        </div>
-        <p>Prawdziwe zdjęcia z prac w Małopolsce: wykopy, place, rozbiórki, mulczowanie i transport sprzętu.</p>
-      </div>
-      <div class="strip">
+      <ul class="cards">
         {
-          strip.map((g, i) => (
-            <a href={stripLinks[i].src} data-lightbox data-alt={g.alt}>
-              <Image src={g.src} alt={g.alt} width={i === 0 ? 1280 : 640} widths={i === 0 ? [640, 960, 1280] : [400, 640]} sizes={i === 0 ? '(max-width: 720px) 100vw, 50vw' : '(max-width: 720px) 50vw, 25vw'} />
+          services.map((s) => {
+            const c = byFile(s.cover);
+            return (
+              <li>
+                <a class="card" href={`/uslugi/${s.slug}`}>
+                  <div class="card__img">
+                    <div class="card__clip">
+                      <Image src={c.src} alt={c.alt} width={640} widths={[400, 640]} sizes="(max-width: 640px) 100vw, 33vw" />
+                    </div>
+                    <span class="card__icon"><Icon name={s.icon} /></span>
+                  </div>
+                  <div class="card__body">
+                    <h3>{s.name}</h3>
+                    <p>{s.short}</p>
+                    <span class="card__more">Czytaj więcej <Icon name="arrow" /></span>
+                  </div>
+                </a>
+              </li>
+            );
+          })
+        }
+        <li>
+          <a class="card card--cta" href={`tel:${site.phone}`}>
+            <Icon name="phone" class="big" />
+            <h3>Nie wiesz, jakiej maszyny potrzebujesz?</h3>
+            <p>Zadzwoń i opisz prace – doradzimy i przygotujemy wycenę.</p>
+            <span class="card__phone">{site.phoneDisplay}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band" aria-label="Gwarancja jakości">
+    <div class="wrap">
+      <p>Mirosław Stach Firma Usługowa – gwarancja jakości</p>
+      <a class="btn btn--light" href={`tel:${site.phone}`}><Icon name="phone" /> Zadzwoń: {site.phoneDisplay}</a>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="real-title">
+    <div class="wrap">
+      <div class="section__intro">
+        <h2 id="real-title">Nasze realizacje</h2>
+        <p>Zdjęcia z naszych prac: wykopy, place i drogi, wyburzenia, mulczowanie terenu i transport materiałów.</p>
+      </div>
+      <div class="mosaic">
+        {
+          realizacje.map((g, i) => (
+            <a href={realLinks[i].src} data-lightbox data-alt={g.alt}>
+              <Image src={g.src} alt={g.alt} width={640} widths={[400, 640]} sizes="(max-width: 720px) 50vw, 33vw" />
             </a>
           ))
         }
       </div>
-      <a class="link-more" href="/galeria">Wszystkie realizacje <Icon name="arrow" /></a>
+      <div class="more-row">
+        <a class="btn btn--primary" href="/galeria">Przejdź do galerii <Icon name="arrow" /></a>
+      </div>
     </div>
   </section>
 
-  <!-- OBSZAR -->
-  <section class="section section--dark on-dark" aria-labelledby="obszar-title">
+  <section class="section section--alt" aria-labelledby="obszar-title">
     <div class="wrap area">
       <div>
-        <span class="eyebrow">Obszar działania</span>
-        <h2 id="obszar-title">Przeginia i okolice</h2>
-        <p class="lead">
-          Baza jest w Przegini, między Olkuszem a Krakowem. Dzięki temu szybko dojeżdżamy na Jurę, do Krzeszowic i Skały oraz w zachodnie i północne okolice Krakowa.
-        </p>
-        <ul class="towns">
+        <div class="section__intro">
+          <h2 id="obszar-title">Obszar działania</h2>
+          <p>Siedziba firmy znajduje się w Przegini (gmina Jerzmanowice-Przeginia, powiat krakowski). Usługi wykonujemy w Przegini i okolicznych miejscowościach, m.in.:</p>
+        </div>
+        <ul class="chips">
           {area.towns.map((t) => <li>{t.name}</li>)}
         </ul>
-        <a class="link-more" href="/obszar-dzialania">Więcej o obszarze działania <Icon name="arrow" /></a>
+        <p><a class="btn btn--text" href="/obszar-dzialania">Więcej o obszarze działania <Icon name="arrow" /></a></p>
       </div>
       <AreaMap />
     </div>
   </section>
 
-  <!-- FAQ -->
   <section class="section" aria-labelledby="faq-title">
     <div class="wrap two-col">
-      <div>
-        <span class="eyebrow">Pytania</span>
-        <h2 id="faq-title">Najczęściej pytacie o</h2>
+      <div class="section__intro">
+        <h2 id="faq-title">Najczęstsze pytania</h2>
+        <p>Nie znalazłeś odpowiedzi? Zadzwoń: <a href={`tel:${site.phone}`}>{site.phoneDisplay}</a>.</p>
       </div>
       <Faq items={faq} />
     </div>

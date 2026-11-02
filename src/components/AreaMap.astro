@@ -37,7 +37,7 @@ const rings = [10, 20, 30];
     towns.map((t) => (
       <g class="town">
         <circle cx={t.x} cy={t.y} r="3.5" />
-        <text x={t.x + 8} y={t.y + 4}>
+        <text x={t.left ? t.x - 8 : t.x + 8} y={t.y + 4} text-anchor={t.left ? "end" : "start"}>
           {t.name}
         </text>
       </g>

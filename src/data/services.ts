@@ -2,312 +2,200 @@ import type { Tag } from './gallery';
 
 export type Service = {
   slug: string;
-  no: string;
-  name: string; // nazwa w nawigacji / liście
+  name: string;
   h1: string;
-  title: string; // <title> 50–60 znaków
-  description: string; // meta description 140–160 znaków
-  lead: string; // krótka, samodzielna odpowiedź (GEO)
-  key: string; // krótki parametr na liście
-  specs: { label: string; value: string }[];
+  title: string;
+  description: string;
+  short: string; // krótki opis na kartę
+  icon: 'excavator' | 'wheel' | 'demolition' | 'mulcher' | 'loader' | 'dumper' | 'tractor';
+  body: string[]; // treść ze starej strony
   scope: string[];
-  body: string[];
-  forWhom?: string;
-  cover: string; // plik z galerii
+  cover: string;
   tag: Tag;
   faq: { q: string; a: string }[];
 };
 
+// Treści usług pochodzą ze starej strony (poprawione tylko literówki).
 export const services: Service[] = [
   {
     slug: 'koparka-gasienicowa',
-    key: 'z operatorem',
-    no: '01',
-    name: 'Koparka gąsienicowa',
+    name: 'Usługi koparką gąsienicową',
     h1: 'Usługi koparką gąsienicową',
     title: 'Usługi koparką gąsienicową – Olkusz, Krzeszowice, Kraków',
     description:
-      'Wykopy pod fundamenty i baseny, przepusty, drogi i parkingi. Usługi koparką gąsienicową z operatorem – Przeginia, Olkusz, Krzeszowice, Kraków. Tel. 794 742 706.',
-    lead:
-      'Koparką gąsienicową wykonujemy wykopy pod fundamenty i baseny, przepusty, prace przy budowie dróg i parkingów oraz wyburzenia. Pracujemy z własnym operatorem dla klientów prywatnych, firm budowlanych, deweloperów i inwestorów.',
-    specs: [
-      { label: 'Typ', value: 'koparka gąsienicowa' },
-      { label: 'Obsługa', value: 'z operatorem' },
-      { label: 'Zastosowanie', value: 'wykopy, drogi, wyburzenia' },
-    ],
-    scope: [
-      'wykopy pod fundamenty i ławy fundamentowe',
-      'wykopy pod baseny',
-      'przepusty i rowy',
-      'roboty ziemne przy budowie dróg i parkingów',
-      'wyburzenia i rozbiórki',
-      'odwodnienia terenu',
-    ],
+      'Wykopy pod fundamenty i baseny, przepusty, drogi i parkingi, wyburzenia. Usługi koparką gąsienicową dla klientów prywatnych i firm. Przeginia, tel. 794 742 706.',
+    short: 'Wykopy fundamentów, wykopy pod baseny, przepusty, wyburzenia, drogi i parkingi.',
+    icon: 'excavator',
     body: [
-      'Gąsienice dobrze sprawdzają się tam, gdzie grunt jest miękki, podmokły albo nierówny. Maszyna stoi stabilnie przy głębokich wykopach, a nacisk rozkłada się na dużej powierzchni.',
-      'Zakres i termin ustalamy telefonicznie. Najwięcej da się ustalić, gdy wiadomo, co ma powstać, gdzie leży działka i czy jest projekt lub szkic wykopu.',
+      'Oferujemy kompleksowe usługi koparką gąsienicową dla klientów prywatnych, firm budowlanych, deweloperów oraz inwestorów.',
+      'Nasze koparki to maszyny o wysokiej wydajności, pozwalające na wykonanie nawet najtrudniejszych zadań związanych z pracami ziemnymi, jak wykopy fundamentów, wykopy pod baseny, przepusty, wyburzenia czy prace związane z budową dróg i parkingów.',
+      'Zapewniamy elastyczność w podejściu do potrzeb naszych klientów, dlatego oferujemy konkurencyjne ceny oraz dostosowanie usług do indywidualnych potrzeb. Nasze usługi koparką gąsienicową są realizowane terminowo i z najwyższą starannością, co przekłada się na zadowolenie naszych klientów.',
+      'Skontaktuj się z nami, aby uzyskać więcej informacji na temat naszych usług.',
     ],
-    forWhom: 'Klienci prywatni (budowa domu, basen), firmy budowlane, deweloperzy, inwestorzy.',
+    scope: ['Wykopy fundamentów', 'Wykopy pod baseny', 'Przepusty', 'Wyburzenia', 'Budowa dróg i parkingów', 'Odwodnienia terenu'],
     cover: '20230418_173640.jpg',
     tag: 'gasienicowa',
     faq: [
       {
-        q: 'Kiedy lepsza jest koparka gąsienicowa, a kiedy kołowa?',
-        a: 'Gąsienicowa lepiej radzi sobie na miękkim, podmokłym i nierównym terenie oraz przy głębokich wykopach. Kołowa szybciej się przemieszcza i nie niszczy utwardzonej nawierzchni, więc częściej wybiera się ją do prac przy drogach i na placach.',
-      },
-      {
         q: 'Czy wykonujecie wykopy pod fundamenty domu?',
-        a: 'Tak. Wykopy pod fundamenty i ławy fundamentowe to jedna z głównych usług koparką gąsienicową. Wystarczy projekt lub wymiary wykopu oraz lokalizacja działki.',
+        a: 'Tak. Wykopy fundamentów to jedna z naszych głównych usług koparką gąsienicową, zarówno dla klientów prywatnych, jak i firm budowlanych.',
       },
       {
-        q: 'Od czego zależy cena usług koparką?',
-        a: 'Od rodzaju maszyny, czasu pracy, odległości dojazdu, rodzaju gruntu i tego, czy urobek trzeba wywieźć. Dokładną wycenę podajemy po rozmowie o zakresie prac.',
+        q: 'Ile kosztują usługi koparką gąsienicową?',
+        a: 'Cenę dostosowujemy do indywidualnych potrzeb: zależy od zakresu prac, czasu pracy, dojazdu i rodzaju gruntu. Zadzwoń pod 794 742 706, a przygotujemy wycenę.',
       },
     ],
   },
   {
     slug: 'koparka-kolowa',
-    key: '18 t · młot',
-    no: '02',
-    name: 'Koparka kołowa 18 t',
+    name: 'Usługi koparką kołową',
     h1: 'Usługi koparką kołową 18 t',
     title: 'Usługi koparką kołową 18 t – korytowanie, niwelacja',
     description:
-      'Koparka kołowa 18 t z operatorem: korytowanie, niwelacja terenu, wykopy pod fundamenty, kanalizację i instalacje, młot wyburzeniowy. Przeginia i okolice.',
-    lead:
-      'Koparką kołową o masie 18 ton wykonujemy korytowanie, niwelację terenu, wykopy pod fundamenty, kanalizację i instalacje podziemne oraz prace przy budowie dróg i placów manewrowych. Maszynę można wyposażyć w młot wyburzeniowy.',
-    specs: [
-      { label: 'Masa', value: '18 t' },
-      { label: 'Osprzęt', value: 'łyżki, młot wyburzeniowy' },
-      { label: 'Obsługa', value: 'z operatorem' },
-    ],
-    scope: [
-      'korytowanie pod drogi, place i kostkę',
-      'niwelacja terenu',
-      'wykopy pod fundamenty',
-      'wykopy pod kanalizację i instalacje podziemne',
-      'budowa dróg i placów manewrowych',
-      'kucie młotem: ściany, fundamenty, przygotowanie terenu pod budowę',
-    ],
+      'Koparka kołowa 18 t: korytowanie, niwelacja terenu, wykopy pod fundamenty, kanalizację i instalacje, młot wyburzeniowy. Przeginia, Olkusz, Krzeszowice.',
+    short: 'Koparka 18 t: korytowanie, niwelacja terenu, kanalizacja, młot wyburzeniowy.',
+    icon: 'wheel',
     body: [
-      'Koparka kołowa szybko przejeżdża między miejscami pracy i nie wymaga lawety na krótkich odcinkach. Dobrze sprawdza się przy pracach liniowych, takich jak drogi, place czy wykopy pod sieci.',
-      'Z młotem wyburzeniowym ta sama maszyna rozbija beton, stare fundamenty i ściany. Teren pod nową budowę można więc przygotować bez zmiany sprzętu.',
+      'Oferujemy usługi koparką kołową o masie 18 ton. Nasz sprzęt jest nowoczesny i wydajny, co pozwala nam na wykonanie różnorodnych zadań związanych z pracami ziemnymi.',
+      'Dzięki koparce kołowej możemy wykonywać prace takie jak korytowanie, niwelacja terenu, wykopy pod fundamenty, podziemne instalacje, kanalizację, a także prace związane z budową dróg i placów manewrowych.',
+      'W naszej ofercie posiadamy również młot wyburzeniowy, co pozwala nam na jeszcze większą elastyczność w wykonywaniu prac związanych z wyburzeniami, burzeniem ścian, fundamentów, a także przygotowaniem terenu pod budowę.',
+      'Działamy szybko i sprawnie, zawsze z myślą o jak najlepszych efektach i satysfakcji klienta. Zapraszamy do skorzystania z naszych usług i do kontaktu z nami w celu uzyskania szczegółowych informacji.',
     ],
+    scope: ['Korytowanie', 'Niwelacja terenu', 'Wykopy pod fundamenty', 'Podziemne instalacje i kanalizacja', 'Drogi i place manewrowe', 'Młot wyburzeniowy'],
     cover: '20220617_115517.jpg',
     tag: 'kolowa',
     faq: [
       {
         q: 'Co to jest korytowanie?',
-        a: 'Korytowanie to usunięcie wierzchniej warstwy gruntu na określoną głębokość pod podbudowę drogi, placu, podjazdu lub kostki brukowej. Powstałe „koryto” wypełnia się potem kruszywem i zagęszcza.',
+        a: 'Korytowanie to usunięcie wierzchniej warstwy gruntu na określoną głębokość pod podbudowę drogi, placu, podjazdu lub kostki brukowej. „Koryto” wypełnia się potem kruszywem i zagęszcza.',
       },
       {
         q: 'Czy koparka kołowa może pracować z młotem wyburzeniowym?',
-        a: 'Tak. Mamy młot wyburzeniowy do koparki, którym kujemy ściany, fundamenty i betonowe nawierzchnie.',
-      },
-      {
-        q: 'Czy wykonujecie niwelację terenu pod trawnik lub kostkę?',
-        a: 'Tak. Niwelację terenu wykonujemy zarówno na prywatnych działkach, jak i na większych placach, a także przed korytowaniem pod nawierzchnie.',
+        a: 'Tak. Mamy młot wyburzeniowy, którym burzymy ściany, fundamenty i przygotowujemy teren pod budowę.',
       },
     ],
   },
   {
     slug: 'wyburzenia-rozbiorki',
-    key: 'młot wyburzeniowy',
-    no: '03',
     name: 'Wyburzenia i rozbiórki',
     h1: 'Wyburzenia i rozbiórki',
     title: 'Wyburzenia i rozbiórki – Przeginia, Olkusz, Kraków',
     description:
-      'Wyburzenia budynków, rozbiórki fundamentów i ścian koparką z młotem wyburzeniowym. Przygotowanie terenu pod budowę. Przeginia, Olkusz, Krzeszowice, Kraków.',
-    lead:
-      'Wyburzenia i rozbiórki wykonujemy koparką gąsienicową oraz koparką kołową z młotem wyburzeniowym. Rozbieramy ściany, fundamenty i betonowe elementy, a gruz ładujemy ładowarką. Po rozbiórce teren można od razu przygotować pod nową budowę.',
-    specs: [
-      { label: 'Sprzęt', value: 'koparki, młot wyburzeniowy, ładowarka' },
-      { label: 'Zakres', value: 'ściany, fundamenty, beton' },
-      { label: 'Po rozbiórce', value: 'przygotowanie terenu' },
-    ],
-    scope: [
-      'wyburzenia budynków gospodarczych i starych zabudowań',
-      'rozbiórka fundamentów i płyt betonowych',
-      'kucie ścian i elementów betonowych młotem',
-      'załadunek gruzu ładowarką',
-      'niwelacja i przygotowanie terenu po rozbiórce',
-    ],
+      'Wyburzenia i rozbiórki koparką gąsienicową i koparką kołową z młotem wyburzeniowym: burzenie ścian, fundamentów, przygotowanie terenu pod budowę.',
+    short: 'Burzenie ścian i fundamentów, młot wyburzeniowy, przygotowanie terenu pod budowę.',
+    icon: 'demolition',
     body: [
-      'Przy rozbiórce liczy się dobór sprzętu. Koparką z chwytakiem lub łyżką rozbiera się konstrukcję, młotem wyburzeniowym kuje beton i fundamenty, a ładowarka sprawnie ładuje gruz.',
-      'Przed zleceniem warto sprawdzić formalności. Część rozbiórek wymaga pozwolenia, część zgłoszenia w starostwie, a niektóre drobne obiekty nie wymagają żadnych formalności.',
+      'Wyburzenia wykonujemy koparką gąsienicową oraz koparką kołową o masie 18 ton.',
+      'W naszej ofercie posiadamy młot wyburzeniowy, co pozwala nam na jeszcze większą elastyczność w wykonywaniu prac związanych z wyburzeniami, burzeniem ścian, fundamentów, a także przygotowaniem terenu pod budowę.',
+      'Do załadunku gruzu dysponujemy ładowarkami o masie od 8,5 do 25 ton.',
+      'Skontaktuj się z nami, aby uzyskać więcej informacji.',
     ],
+    scope: ['Wyburzenia budynków', 'Burzenie ścian', 'Rozbiórka fundamentów', 'Załadunek gruzu', 'Przygotowanie terenu pod budowę'],
     cover: 'IMG-20230406-WA0000.jpg',
     tag: 'wyburzenia',
     faq: [
       {
         q: 'Czy rozbiórka budynku wymaga pozwolenia?',
-        a: 'To zależy od obiektu. Część rozbiórek wymaga pozwolenia na rozbiórkę, część wystarczy zgłosić, a niektóre drobne obiekty nie wymagają formalności. Dla gminy Jerzmanowice-Przeginia i okolic sprawy prowadzi Starostwo Powiatowe w Krakowie (wydział architektury) i tam najlepiej to potwierdzić.',
+        a: 'To zależy od obiektu: część rozbiórek wymaga pozwolenia, część zgłoszenia, a niektóre drobne obiekty nie wymagają formalności. Dla gminy Jerzmanowice-Przeginia i okolic sprawy prowadzi Starostwo Powiatowe w Krakowie i tam najlepiej to potwierdzić.',
       },
       {
         q: 'Jakim sprzętem wykonujecie wyburzenia?',
-        a: 'Koparką gąsienicową, koparką kołową 18 t z młotem wyburzeniowym oraz ładowarką do załadunku gruzu.',
-      },
-      {
-        q: 'Czy po rozbiórce przygotujecie teren pod budowę?',
-        a: 'Tak. Po wyburzeniu możemy wyrównać teren, wykonać niwelację i wykopy pod nowe fundamenty.',
+        a: 'Koparką gąsienicową, koparką kołową 18 t z młotem wyburzeniowym oraz ładowarkami do załadunku gruzu.',
       },
     ],
   },
   {
     slug: 'mulczowanie-karczowanie',
-    key: 'na ciągniku',
-    no: '04',
     name: 'Mulczer leśny',
-    h1: 'Mulczowanie terenu mulczerem leśnym',
+    h1: 'Usługi mulczerem leśnym',
     title: 'Mulczowanie terenu mulczerem leśnym – Olkusz, Kraków',
     description:
-      'Mulczowanie terenu i usuwanie zakrzaczeń mulczerem leśnym na ciągniku. Działki, lasy, parki, pobocza dróg. Przeginia, Olkusz, Krzeszowice, Kraków.',
-    lead:
-      'Mulczerem leśnym zamontowanym na ciągniku usuwamy zadrzewienia, zakrzaczenia i roślinność na działkach, w lasach, parkach i przy drogach. Mulczer rozdrabnia roślinność na miejscu, więc nie trzeba jej wywozić.',
-    specs: [
-      { label: 'Maszyna', value: 'mulczer leśny na ciągniku' },
-      { label: 'Teren', value: 'działki, lasy, parki, pobocza' },
-      { label: 'Efekt', value: 'rozdrobniona masa na miejscu' },
-    ],
-    scope: [
-      'oczyszczanie zarośniętych działek',
-      'usuwanie zakrzaczeń i samosiejek',
-      'mulczowanie terenu przed budową',
-      'utrzymanie poboczy i przydroży',
-      'prace w lasach i parkach',
-    ],
+      'Usługi mulczerem leśnym: szybkie i skuteczne usuwanie zadrzewień i roślinności w lesie, parkach i przy drogach. Przeginia, Olkusz, Krzeszowice, Kraków.',
+    short: 'Szybkie i skuteczne usuwanie zadrzewień i roślinności w lesie, parkach i przy drogach.',
+    icon: 'mulcher',
     body: [
-      'Mulczer leśny rozdrabnia krzewy, młode drzewa i wysoką roślinność. Teren od razu nadaje się do dalszych prac: niwelacji, wykopów albo założenia trawnika.',
-      'Karpy i większe korzenie, których mulczer nie rozdrobni, można usunąć koparką.',
+      'W naszej ofercie znajdują się usługi mulczerem leśnym, które wykonywane są przez naszą specjalistyczną maszynę.',
+      'Dzięki niej jesteśmy w stanie szybko i skutecznie usuwać zadrzewienia oraz elementy roślinne w lesie, parkach czy przydrożach.',
+      'Staramy się zawsze spełniać oczekiwania naszych klientów i zapewnić im wysoką jakość usług.',
     ],
+    scope: ['Usuwanie zadrzewień', 'Usuwanie zakrzaczeń i roślinności', 'Lasy i parki', 'Przydroża', 'Oczyszczanie działek'],
     cover: '20230401_155849.jpg',
     tag: 'mulczowanie',
     faq: [
       {
         q: 'Co to jest mulczowanie terenu?',
-        a: 'Mulczowanie to rozdrabnianie roślinności (krzewów, samosiejek, wysokiej trawy) bezpośrednio na miejscu. Rozdrobniona masa zostaje na gruncie jako ściółka, więc nie trzeba jej wywozić.',
-      },
-      {
-        q: 'Czy mulczer poradzi sobie z zarośniętą działką?',
-        a: 'Tak, to jego główne zastosowanie. Krzewy i młode drzewa rozdrabnia na miejscu, a pozostałe karpy i większe korzenie można usunąć koparką.',
-      },
-      {
-        q: 'Od czego zależy koszt mulczowania?',
-        a: 'Od powierzchni, gęstości i grubości roślinności, ukształtowania terenu i dojazdu. Wycenę podajemy po opisie lub zdjęciach terenu.',
+        a: 'Mulczowanie to rozdrabnianie roślinności (krzewów, samosiejek, młodych drzew) bezpośrednio na miejscu. Rozdrobniona masa zostaje na gruncie, więc nie trzeba jej wywozić.',
       },
     ],
   },
   {
     slug: 'wynajem-ladowarki',
-    key: '8,5–25 t',
-    no: '05',
-    name: 'Ładowarki 8,5–25 t',
-    h1: 'Wynajem ładowarek kołowych 8,5–25 t',
+    name: 'Wynajem ładowarek 8,5–25 t',
+    h1: 'Wynajem ładowarek 8,5–25 ton',
     title: 'Wynajem ładowarki kołowej 8,5–25 t – Przeginia, Olkusz',
     description:
-      'Wynajem ładowarek kołowych o masie od 8,5 do 25 ton. Załadunek ziemi, kruszywa i gruzu. Regularnie serwisowane maszyny. Przeginia, Olkusz, Krzeszowice, Kraków.',
-    lead:
-      'Wynajmujemy ładowarki o masie od 8,5 do 25 ton, w tym ładowarki kołowe. Służą do załadunku i przemieszczania ziemi, kruszywa i gruzu. Maszyny są regularnie serwisowane i przeglądane.',
-    specs: [
-      { label: 'Masa', value: '8,5–25 t' },
-      { label: 'Typ', value: 'ładowarki kołowe' },
-      { label: 'Stan', value: 'regularne serwisy i przeglądy' },
-    ],
-    scope: [
-      'załadunek ziemi i urobku na wywrotki i przyczepy',
-      'przemieszczanie kruszywa na placu',
-      'załadunek gruzu z rozbiórek',
-      'prace na składach i placach budowy',
-    ],
+      'Wynajem ładowarek o masie od 8,5 do 25 ton, w tym ładowarek kołowych. Maszyny regularnie serwisowane i przeglądane. Przeginia, Olkusz, Krzeszowice, Kraków.',
+    short: 'Ładowarki od 8,5 do 25 ton, w tym kołowe. Regularnie serwisowane.',
+    icon: 'loader',
     body: [
-      'Duży wybór mas pozwala dobrać ładowarkę do zadania: mniejszą na ciasną budowę, większą do szybkiego załadunku dużych ilości materiału.',
+      'Oferujemy wynajem ładowarek o masie od 8,5 do 25 ton, w tym ładowarek kołowych.',
+      'Maszyny są regularnie serwisowane i przeglądane, a nasze doświadczenie i wysoka jakość zapewniają niezawodność i bezpieczeństwo.',
+      'Skontaktuj się z nami, aby uzyskać więcej informacji.',
     ],
+    scope: ['Ładowarki 8,5–25 t', 'Ładowarki kołowe', 'Załadunek ziemi, kruszywa i gruzu'],
     cover: 'IMG-20221115-WA0001.jpg',
     tag: 'ladowarka',
     faq: [
       {
         q: 'Jakie ładowarki są dostępne do wynajęcia?',
-        a: 'Ładowarki o masie od 8,5 do 25 ton, w tym ładowarki kołowe.',
-      },
-      {
-        q: 'Do czego najczęściej wynajmuje się ładowarkę kołową?',
-        a: 'Do załadunku ziemi, kruszywa i gruzu na wywrotki lub przyczepy oraz do przemieszczania materiałów na placu budowy i składzie.',
+        a: 'Ładowarki o masie od 8,5 do 25 ton, w tym ładowarki kołowe. Maszyny są regularnie serwisowane i przeglądane.',
       },
     ],
   },
   {
     slug: 'wynajem-wozidel',
-    key: '1,5–16 t',
-    no: '06',
-    name: 'Wozidła 1,5–16 t',
-    h1: 'Wynajem wozideł budowlanych 1,5–16 t',
+    name: 'Wynajem wozideł budowlanych',
+    h1: 'Wynajem wozideł budowlanych',
     title: 'Wynajem wozideł budowlanych 1,5–16 t – Małopolska',
     description:
-      'Wynajem wozideł budowlanych o ładowności od 1,5 do 16 ton, z operatorem lub bez. Transport urobku i kruszywa na budowie. Przeginia, Olkusz, Kraków.',
-    lead:
-      'Wynajmujemy wozidła budowlane o ładowności od 1,5 do 16 ton, z doświadczonym operatorem lub bez. Wozidło przewozi urobek, ziemię i kruszywo w obrębie budowy, także po nieutwardzonym terenie.',
-    specs: [
-      { label: 'Ładowność', value: '1,5–16 t' },
-      { label: 'Obsługa', value: 'z operatorem lub bez' },
-      { label: 'Teren', value: 'budowa, grunt nieutwardzony' },
-    ],
-    scope: [
-      'przewóz urobku z wykopu na hałdę',
-      'dowóz kruszywa i piasku w obrębie budowy',
-      'praca w parze z koparką lub ładowarką',
-    ],
+      'Wynajem wozideł budowlanych o nośności od 1,5 do 16 ton, z doświadczonymi operatorami lub bez. Przeginia, Olkusz, Krzeszowice, Kraków.',
+    short: 'Nośność od 1,5 do 16 ton, z doświadczonym operatorem lub bez.',
+    icon: 'dumper',
     body: [
-      'Małe wozidło zmieści się na ciasnej, prywatnej działce, a większe przyspiesza pracę przy dużych wykopach. Przy większych zleceniach wozidło pracuje razem z naszą koparką lub ładowarką.',
+      'Oferujemy wynajem wozideł budowlanych o różnych nośnościach od 1,5 tony do 16 ton z doświadczonymi operatorami lub bez.',
+      'Zachęcamy do kontaktu w celu uzyskania szczegółowych informacji.',
     ],
+    scope: ['Nośność 1,5–16 t', 'Z operatorem lub bez', 'Transport urobku na budowie'],
     cover: 'IMG-20230221-WA0003.jpg',
     tag: 'wozidla',
     faq: [
       {
         q: 'Czy wozidło można wynająć bez operatora?',
-        a: 'Tak. Wozidła wynajmujemy z doświadczonym operatorem albo bez operatora.',
-      },
-      {
-        q: 'Jaką ładowność mają wozidła?',
-        a: 'Od 1,5 do 16 ton, więc można dobrać maszynę do wielkości budowy.',
+        a: 'Tak. Wozidła budowlane wynajmujemy z doświadczonym operatorem lub bez operatora.',
       },
     ],
   },
   {
     slug: 'ciagnik-beczkowoz-zamiatarka',
-    key: '10 m³ · 10 000 l',
-    no: '07',
-    name: 'Ciągnik, beczkowóz, zamiatarka',
-    h1: 'Usługi ciągnikiem rolniczym, beczkowozem i zamiatarką',
+    name: 'Usługi ciągnikiem rolniczym',
+    h1: 'Usługi ciągnikiem rolniczym',
     title: 'Usługi ciągnikiem, beczkowóz 10 000 l, zamiatarka',
     description:
-      'Usługi ciągnikiem rolniczym z przyczepą 10 m³ i beczką 10 000 l: transport materiałów, polewanie dróg, stabilizacja. Zamiatarka uliczna. Przeginia i okolice.',
-    lead:
-      'Ciągnikiem rolniczym z przyczepą o pojemności 10 m³ przewozimy materiały sypkie. Z beczką o pojemności 10 000 litrów polewamy drogi i dowozimy wodę do stabilizacji. W ofercie jest też zamiatarka uliczna.',
-    specs: [
-      { label: 'Przyczepa', value: '10 m³' },
-      { label: 'Beczka', value: '10 000 l' },
-      { label: 'Dodatkowo', value: 'zamiatarka uliczna' },
-    ],
-    scope: [
-      'transport ziemi, kruszywa i innych materiałów',
-      'polewanie dróg (np. ograniczanie pylenia na budowie)',
-      'dowóz wody do stabilizacji gruntu',
-      'zamiatanie ulic i placów',
-    ],
+      'Usługi ciągnikiem rolniczym z przyczepą 10 m³ i beczką 10 000 l: przewóz materiałów, polewanie dróg, stabilizacja. Zamiatarka uliczna. Przeginia i okolice.',
+    short: 'Przyczepa 10 m³, beczka 10 000 l, polewanie dróg, zamiatarka uliczna.',
+    icon: 'tractor',
     body: [
-      'Ciągnik z przyczepą dobrze sprawdza się na krótkich i średnich trasach oraz tam, gdzie trudno wjechać ciężarówką. Beczka 10 000 l pozwala w jednym kursie polać długi odcinek drogi.',
+      'Oferujemy usługi ciągnikiem rolniczym. Nasza firma dysponuje nowoczesnym ciągnikiem z przyczepą o pojemności 10 metrów sześciennych oraz beczką o pojemności 10 000 litrów.',
+      'Dzięki temu dysponujemy możliwością przewozu różnorodnych materiałów. W ramach naszych usług oferujemy między innymi polewanie dróg lub stabilizacji.',
+      'Dodatkowo w naszej ofercie znajdują się usługi zamiatarką uliczną. Staramy się zawsze spełniać oczekiwania naszych klientów i zapewnić im wysoką jakość usług.',
     ],
+    scope: ['Przyczepa 10 m³', 'Beczka 10 000 l', 'Polewanie dróg i stabilizacji', 'Przewóz materiałów', 'Zamiatarka uliczna'],
     cover: '20220812_164110.jpg',
     tag: 'ciagnik',
     faq: [
       {
         q: 'Jaką pojemność ma przyczepa i beczka?',
         a: 'Przyczepa ma pojemność 10 m³, a beczka 10 000 litrów.',
-      },
-      {
-        q: 'Do czego służy polewanie dróg?',
-        a: 'Polewanie ogranicza pylenie na budowach i drogach gruntowych. Wodę z beczki wykorzystuje się też przy stabilizacji gruntu.',
       },
     ],
   },

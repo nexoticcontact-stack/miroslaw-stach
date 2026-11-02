@@ -1,6 +1,5 @@
 ---
 import '@fontsource-variable/archivo/wdth.css';
-import '@fontsource/jetbrains-mono/400.css';
 import '../styles/global.css';
 import { getImage } from 'astro:assets';
 import Brand from '../components/Brand.astro';
@@ -26,12 +25,13 @@ const og = await getImage({ src: ogImage ?? heroImg, width: 1200, height: 630, f
 const ogUrl = new URL(og.src, site.url).href;
 
 const nav = [
+  { href: '/', label: 'Strona główna' },
   { href: '/uslugi', label: 'Usługi' },
   { href: '/obszar-dzialania', label: 'Obszar działania' },
-  { href: '/galeria', label: 'Realizacje' },
+  { href: '/galeria', label: 'Galeria' },
   { href: '/kontakt', label: 'Kontakt' },
 ];
-const isCurrent = (href: string) => path === href || path.startsWith(href + '/');
+const isCurrent = (href: string) => (href === '/' ? path === '/' : path === href || path.startsWith(href + '/'));
 
 const business = {
   '@context': 'https://schema.org',
@@ -123,7 +123,7 @@ const year = new Date().getFullYear();
 
     <div class="topbar">
       <div class="wrap">
-        <span class="hide-sm">{site.address.street}, {site.address.postalCode} {site.address.city} · {site.address.region}</span>
+        <span class="hide-sm">{site.address.street}, {site.address.postalCode} {site.address.city}, woj. {site.address.region}</span>
         <span>
           <a href={`tel:${site.phone}`}>Tel. {site.phoneDisplay}</a>
           <span class="hide-sm"> · <a href={`mailto:${site.email}`}>{site.email}</a></span>
@@ -158,8 +158,8 @@ const year = new Date().getFullYear();
     <footer class="footer">
       <div class="wrap footer__top">
         <div>
-          <Brand />
-          <p>Roboty ziemne, wyburzenia i wynajem maszyn budowlanych z operatorem. Przeginia, powiat krakowski i olkuski.</p>
+          <Brand light />
+          <p>Mirosław Stach Firma Usługowa – gwarancja jakości. Roboty ziemne, wyburzenia i wynajem maszyn budowlanych.</p>
         </div>
         <div>
           <h2>Usługi</h2>
@@ -170,7 +170,6 @@ const year = new Date().getFullYear();
         <div>
           <h2>Strona</h2>
           <ul>
-            <li><a href="/">Strona główna</a></li>
             {nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
           </ul>
         </div>
@@ -179,9 +178,9 @@ const year = new Date().getFullYear();
           <address>
             {site.name}<br />
             {site.address.street}<br />
+            Woj. Małopolskie<br />
             {site.address.postalCode} {site.address.city}<br />
-            woj. {site.address.region}<br />
-            NIP {site.nip}<br />
+            NIP: {site.nip}<br />
             <a href={`tel:${site.phone}`}>Tel. {site.phoneDisplay}</a><br />
             <a href={`mailto:${site.email}`}>{site.email}</a>
           </address>
@@ -189,7 +188,7 @@ const year = new Date().getFullYear();
       </div>
       <div class="wrap footer__bottom">
         <span>© {year} {site.name}</span>
-        <span>Projekt i realizacja: Marcin Izdebski</span>
+        <span>Projekt i realizacja: <a href="https://www.facebook.com/marcin.izdebski.7528/" target="_blank" rel="noopener noreferrer">Marcin Izdebski</a></span>
       </div>
     </footer>
 

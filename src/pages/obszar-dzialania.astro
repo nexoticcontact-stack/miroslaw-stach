@@ -4,6 +4,7 @@ import Icon from '../components/Icon.astro';
 import AreaMap from '../components/AreaMap.astro';
 import Faq from '../components/Faq.astro';
 import Cta from '../components/Cta.astro';
+import PageHead from '../components/PageHead.astro';
 import { site, area } from '../data/site';
 import { services } from '../data/services';
 
@@ -15,18 +16,9 @@ const km = (t: { lat: number; lon: number }) => {
 const towns = [...area.towns].sort((a, b) => km(a) - km(b));
 
 const faq = [
-  {
-    q: 'Czy dojeżdżacie do Olkusza i Krzeszowic?',
-    a: 'Tak. Olkusz i Krzeszowice leżą kilkanaście kilometrów od naszej bazy w Przegini, więc to jeden z głównych obszarów, na których pracujemy.',
-  },
-  {
-    q: 'Czy wykonujecie zlecenia w Krakowie?',
-    a: 'Tak, zwłaszcza w zachodnich i północnych okolicach Krakowa (Zabierzów, Wielka Wieś). Przy zleceniach w samym Krakowie ustalamy termin i dojazd telefonicznie.',
-  },
-  {
-    q: 'A jeśli mojej miejscowości nie ma na liście?',
-    a: 'Zadzwoń pod 794 742 706. Lista pokazuje najbliższe miejscowości, ale realizujemy też zlecenia dalej, w zależności od zakresu prac.',
-  },
+  { q: 'Czy dojeżdżacie do Olkusza i Krzeszowic?', a: 'Tak. Olkusz i Krzeszowice leżą kilkanaście kilometrów od naszej siedziby w Przegini.' },
+  { q: 'Czy wykonujecie zlecenia w Krakowie?', a: 'Tak, szczególnie w zachodnich i północnych okolicach Krakowa (Zabierzów, Wielka Wieś). Szczegóły ustalamy telefonicznie.' },
+  { q: 'Mojej miejscowości nie ma na liście – co wtedy?', a: 'Zadzwoń pod 794 742 706. Lista pokazuje najbliższe miejscowości, ale wykonujemy też zlecenia dalej.' },
 ];
 
 const schema = [
@@ -46,53 +38,39 @@ const schema = [
   description="Roboty ziemne i usługi koparką w okolicy Przegini: Olkusz, Krzeszowice, Skała, Jerzmanowice, Zabierzów, Trzebinia, Wolbrom, Kraków. Sprawdź, gdzie dojeżdżamy."
   schema={schema}
 >
-  <section class="page-head on-dark">
-    <div class="wrap">
-      <ol class="crumbs">
-        <li><a href="/">Strona główna</a></li>
-        <li aria-current="page">Obszar działania</li>
-      </ol>
-      <span class="eyebrow">Zasięg</span>
-      <h1>Usługi koparką w okolicy Przegini</h1>
-      <p class="lead">
-        Baza firmy jest w Przegini (gm. Jerzmanowice-Przeginia, powiat krakowski). Roboty ziemne, wyburzenia i wynajem maszyn wykonujemy w Olkuszu, Krzeszowicach, Skale, Jerzmanowicach, Zabierzowie i okolicach Krakowa.
-      </p>
-    </div>
-  </section>
-  <div class="hazard" aria-hidden="true"></div>
+  <PageHead
+    title="Obszar działania"
+    lead="Siedziba firmy znajduje się w Przegini (gmina Jerzmanowice-Przeginia, powiat krakowski). Roboty ziemne, wyburzenia i wynajem maszyn wykonujemy w Olkuszu, Krzeszowicach, Skale, Zabierzowie i okolicach Krakowa."
+    crumbs={[{ href: '/', label: 'Strona główna' }, { label: 'Obszar działania' }]}
+  />
 
-  <section class="section section--dark on-dark">
+  <section class="section">
     <div class="wrap area">
       <div>
-        <span class="eyebrow">Odległości od bazy</span>
-        <h2>Gdzie dojeżdżamy</h2>
+        <div class="section__intro">
+          <h2>Gdzie dojeżdżamy</h2>
+        </div>
         <ul class="km-list">
-          {towns.map((t) => <li><span>{t.name}</span><span class="mono">ok. {km(t)} km</span></li>)}
+          {towns.map((t) => <li><span>{t.name}</span><span>ok. {km(t)} km</span></li>)}
         </ul>
-        <p class="mono km-note">Odległości w linii prostej, orientacyjne.</p>
+        <p class="km-note">Odległości od Przegini w linii prostej, orientacyjne.</p>
       </div>
       <AreaMap />
     </div>
   </section>
 
-  <section class="section">
-    <div class="wrap two-col">
-      <div>
-        <span class="eyebrow">Usługi w regionie</span>
-        <h2>Co robimy na miejscu</h2>
-      </div>
-      <ul class="related">
-        {services.map((s) => <li><a href={`/uslugi/${s.slug}`}>{s.name} <Icon name="arrow" /></a></li>)}
+  <section class="section section--alt">
+    <div class="wrap">
+      <div class="section__intro"><h2>Nasze usługi w regionie</h2></div>
+      <ul class="links">
+        {services.map((s) => <li><a href={`/uslugi/${s.slug}`}><Icon name={s.icon} /> {s.name}</a></li>)}
       </ul>
     </div>
   </section>
 
-  <section class="section section--paper2">
+  <section class="section">
     <div class="wrap two-col">
-      <div>
-        <span class="eyebrow">Pytania</span>
-        <h2>Dojazd i zasięg</h2>
-      </div>
+      <div class="section__intro"><h2>Pytania o dojazd</h2></div>
       <Faq items={faq} />
     </div>
   </section>

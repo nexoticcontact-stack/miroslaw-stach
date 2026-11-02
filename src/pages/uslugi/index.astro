@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
 import Cta from '../../components/Cta.astro';
+import PageHead from '../../components/PageHead.astro';
 import { site } from '../../data/site';
 import { services } from '../../data/services';
 import { byFile } from '../../data/gallery';
@@ -25,23 +26,15 @@ const schema = [
 
 <Base
   title="Usługi koparką, wyburzenia, wynajem maszyn | Mirosław Stach"
-  description="Roboty ziemne i usługi koparką z operatorem, wyburzenia, mulczer leśny, wynajem ładowarek 8,5–25 t i wozideł 1,5–16 t, beczkowóz 10 000 l. Przeginia i okolice."
+  description="Nasza oferta: usługi koparką gąsienicową i kołową, wyburzenia, mulczer leśny, wynajem ładowarek 8,5–25 t i wozideł 1,5–16 t, ciągnik z beczką 10 000 l. Przeginia."
   schema={schema}
 >
-  <section class="page-head on-dark">
-    <div class="wrap">
-      <ol class="crumbs">
-        <li><a href="/">Strona główna</a></li>
-        <li aria-current="page">Usługi</li>
-      </ol>
-      <span class="eyebrow">Oferta</span>
-      <h1>Usługi koparką i maszynami budowlanymi</h1>
-      <p class="lead">
-        Wykonujemy prace ziemne, budowlane i drogowe: wykopy, korytowanie, niwelację, odwodnienia terenu i wyburzenia. Do tego wynajem ładowarek i wozideł, mulczowanie terenu i usługi ciągnikiem z beczkowozem.
-      </p>
-    </div>
-  </section>
-  <div class="hazard" aria-hidden="true"></div>
+  <PageHead
+    title="Nasza oferta"
+    lead="Nasza oferta obejmuje szeroki wachlarz usług, w tym m.in.: wykonywanie prac ziemnych, budowlanych i drogowych, korytowanie, odwodnienia terenów, wyburzenia oraz wiele innych."
+    image={byFile('20220706_150017.jpg').src}
+    crumbs={[{ href: '/', label: 'Strona główna' }, { label: 'Usługi' }]}
+  />
 
   <section class="section">
     <div class="wrap">
@@ -51,16 +44,13 @@ const schema = [
           return (
             <article class="svc-row" id={s.slug}>
               <a class="svc-row__img" href={`/uslugi/${s.slug}`} tabindex="-1" aria-hidden="true">
-                <Image src={c.src} alt="" width={800} widths={[480, 800]} sizes="(max-width: 860px) 100vw, 40vw" loading={i < 2 ? 'eager' : 'lazy'} />
+                <Image src={c.src} alt="" width={800} widths={[480, 800]} sizes="(max-width: 860px) 100vw, 45vw" loading={i < 2 ? 'eager' : 'lazy'} />
               </a>
-              <div class="svc-row__body">
-                <span class="sheet__no">{s.no}</span>
-                <h2><a href={`/uslugi/${s.slug}`}>{s.h1}</a></h2>
-                <p>{s.lead}</p>
-                <dl class="svc-row__specs">
-                  {s.specs.map((sp) => <div><dt>{sp.label}</dt><dd>{sp.value}</dd></div>)}
-                </dl>
-                <a class="link-more" href={`/uslugi/${s.slug}`}>Szczegóły: {s.name.toLowerCase()} <Icon name="arrow" /></a>
+              <div>
+                <Icon name={s.icon} class="svc-row__icon" />
+                <h2><a href={`/uslugi/${s.slug}`}>{s.name}</a></h2>
+                {s.body.slice(0, 2).map((p) => <p>{p}</p>)}
+                <a class="btn btn--text" href={`/uslugi/${s.slug}`}>Czytaj więcej <Icon name="arrow" /></a>
               </div>
             </article>
           );

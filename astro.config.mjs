@@ -9,6 +9,7 @@ export default defineConfig({
     inlineStylesheets: 'never', // wszystkie style w plikach -> ścisłe CSP bez 'unsafe-inline'
   },
   compressHTML: true,
+  devToolbar: { enabled: false },
   integrations: [
     sitemap({
       filter: (page) => !page.includes('/404'),
