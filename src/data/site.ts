@@ -1,6 +1,8 @@
 // Jedno źródło prawdy dla danych firmy (NAP). Zmieniaj tylko tutaj.
 export const site = {
   url: 'https://www.miroslawstach.pl',
+  // Kod weryfikacyjny Google Search Console (sama wartość content z tagu HTML).
+  googleSiteVerification: 'OhCkoMl9N-1Y1MclmyzmH2DYAZHlZRE8ZkTVxhEbo6Y',
   name: 'Mirosław Stach Firma Usługowa',
   shortName: 'Mirosław Stach',
   tagline: 'Roboty ziemne, wyburzenia i maszyny z operatorem',
