@@ -6,7 +6,7 @@ import Brand from '../components/Brand.astro';
 import Icon from '../components/Icon.astro';
 import { site } from '../data/site';
 import { services } from '../data/services';
-import { regions } from '../data/regions';
+import { regions, schemaAreaServed } from '../data/regions';
 import heroImg from '../assets/hero.png';
 
 interface Props {
@@ -57,11 +57,7 @@ const business = {
     addressCountry: site.address.country,
   },
   hasMap: site.mapsUrl,
-  areaServed: [
-    { '@type': 'Country', name: 'Polska' },
-    { '@type': 'AdministrativeArea', name: 'województwo małopolskie' },
-    { '@type': 'AdministrativeArea', name: 'województwo śląskie' },
-  ],
+  areaServed: schemaAreaServed,
   knowsAbout: ['roboty ziemne', 'wykopy pod fundamenty', 'korytowanie', 'niwelacja terenu', 'wyburzenia', 'rozbiórki', 'mulczowanie terenu', 'odwodnienie terenu'],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',

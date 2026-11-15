@@ -9,6 +9,7 @@ import { site } from '../../data/site';
 import { services, type Service } from '../../data/services';
 import { byFile, byTag } from '../../data/gallery';
 import { lightboxSrc } from '../../data/lightbox';
+import { regions, nearbyCities, schemaAreaServed } from '../../data/regions';
 
 export function getStaticPaths() {
   return services.map((s) => ({ params: { slug: s.slug }, props: { s } }));
@@ -29,7 +30,7 @@ const schema = [
     description: s.body[0],
     url,
     provider: { '@id': `${site.url}/#firma` },
-    areaServed: { '@type': 'Country', name: 'Polska' },
+    areaServed: schemaAreaServed,
   },
   {
     '@type': 'BreadcrumbList',
@@ -81,6 +82,21 @@ const schema = [
 
         <h2>Najczęstsze pytania</h2>
         <Faq items={s.faq} />
+
+        <h2>{s.areaHeading}</h2>
+        <p>Bazę mamy w Przegini pod Krakowem, więc najszybciej dojeżdżamy do okolicznych miejscowości:</p>
+        <ul class="chips">
+          {nearbyCities.map((c) => <li>{c}</li>)}
+        </ul>
+        <p class="km-note">
+          Większe zlecenia realizujemy w całej Polsce. Zobacz też:{' '}
+          {regions.map((r, i) => (
+            <>
+              {i > 0 && ' · '}
+              <a href={`/${r.slug}`}>Roboty ziemne – {r.name}</a>
+            </>
+          ))}
+        </p>
       </div>
 
       <aside class="aside">

@@ -2,6 +2,7 @@ import type { Tag } from './gallery';
 
 export type Service = {
   slug: string;
+  areaHeading: string; // nagłówek sekcji z miejscowościami
   name: string;
   h1: string;
   title: string;
@@ -19,11 +20,12 @@ export type Service = {
 export const services: Service[] = [
   {
     slug: 'koparka-gasienicowa',
+    areaHeading: 'Gdzie pracujemy koparką gąsienicową',
     name: 'Usługi koparką gąsienicową',
     h1: 'Usługi koparką gąsienicową',
-    title: 'Usługi koparką gąsienicową – cała Polska | Mirosław Stach',
+    title: 'Usługi koparką gąsienicową – Kraków, Olkusz, Śląsk',
     description:
-      'Wykopy pod fundamenty i baseny, przepusty, drogi, parkingi i wyburzenia. Usługi koparką gąsienicową dla klientów prywatnych i firm w całej Polsce.',
+      'Wykopy pod fundamenty i baseny, przepusty, drogi, parkingi i wyburzenia. Usługi koparką gąsienicową: Kraków, Olkusz, Chrzanów, Śląsk i cała Polska.',
     short: 'Wykopy fundamentów, wykopy pod baseny, przepusty, wyburzenia, drogi i parkingi.',
     icon: 'excavator',
     body: [
@@ -52,11 +54,12 @@ export const services: Service[] = [
   },
   {
     slug: 'koparka-kolowa',
+    areaHeading: 'Gdzie pracujemy koparką kołową',
     name: 'Usługi koparką kołową',
     h1: 'Usługi koparką kołową 18 t',
-    title: 'Usługi koparką kołową 18 t – korytowanie, niwelacja',
+    title: 'Usługi koparką kołową 18 t – Kraków, Olkusz, Śląsk',
     description:
-      'Koparka kołowa 18 t: korytowanie, niwelacja terenu, wykopy pod fundamenty, kanalizację i instalacje, młot wyburzeniowy. Działamy na terenie całej Polski.',
+      'Koparka kołowa 18 t: korytowanie, niwelacja terenu, wykopy pod fundamenty, kanalizację i instalacje, młot wyburzeniowy. Kraków, Olkusz, Śląsk i cała Polska.',
     short: 'Koparka 18 t: korytowanie, niwelacja terenu, kanalizacja, młot wyburzeniowy.',
     icon: 'wheel',
     body: [
@@ -85,11 +88,12 @@ export const services: Service[] = [
   },
   {
     slug: 'wyburzenia-rozbiorki',
+    areaHeading: 'Gdzie wykonujemy wyburzenia i rozbiórki',
     name: 'Wyburzenia i rozbiórki',
     h1: 'Wyburzenia i rozbiórki',
-    title: 'Wyburzenia i rozbiórki – cała Polska | Mirosław Stach',
+    title: 'Wyburzenia i rozbiórki – Kraków, Olkusz, Katowice',
     description:
-      'Wyburzenia i rozbiórki koparką gąsienicową i koparką kołową z młotem wyburzeniowym: burzenie ścian, fundamentów, przygotowanie terenu pod budowę.',
+      'Wyburzenia i rozbiórki koparką gąsienicową i koparką kołową z młotem wyburzeniowym: burzenie ścian i fundamentów. Kraków, Olkusz, Chrzanów, Śląsk i cała Polska.',
     short: 'Burzenie ścian i fundamentów, młot wyburzeniowy, przygotowanie terenu pod budowę.',
     icon: 'demolition',
     body: [
@@ -118,11 +122,12 @@ export const services: Service[] = [
   },
   {
     slug: 'mulczowanie-karczowanie',
+    areaHeading: 'Gdzie wykonujemy mulczowanie',
     name: 'Mulczer leśny',
     h1: 'Usługi mulczerem leśnym',
-    title: 'Mulczowanie terenu mulczerem leśnym | Mirosław Stach',
+    title: 'Mulczowanie terenu mulczerem leśnym – Olkusz, Kraków',
     description:
-      'Usługi mulczerem leśnym: szybkie i skuteczne usuwanie zadrzewień i roślinności w lesie, parkach i przy drogach. Działamy na terenie całej Polski.',
+      'Usługi mulczerem leśnym: szybkie i skuteczne usuwanie zadrzewień i roślinności w lesie, parkach i przy drogach. Olkusz, Kraków, Chrzanów, Śląsk i cała Polska.',
     short: 'Szybkie i skuteczne usuwanie zadrzewień i roślinności w lesie, parkach i przy drogach.',
     icon: 'mulcher',
     body: [
@@ -150,11 +155,12 @@ export const services: Service[] = [
   },
   {
     slug: 'wynajem-ladowarki',
+    areaHeading: 'Gdzie wynajmujemy ładowarki',
     name: 'Wynajem ładowarek 8,5–25 t',
     h1: 'Wynajem ładowarek 8,5–25 ton',
-    title: 'Wynajem ładowarek kołowych 8,5–25 t | Mirosław Stach',
+    title: 'Wynajem ładowarek kołowych 8,5–25 t – Kraków, Śląsk',
     description:
-      'Wynajem ładowarek o masie od 8,5 do 25 ton, w tym ładowarek kołowych. Maszyny regularnie serwisowane i przeglądane. Cała Polska.',
+      'Wynajem ładowarek o masie od 8,5 do 25 ton, w tym ładowarek kołowych. Maszyny regularnie serwisowane. Kraków, Olkusz, Katowice i cała Polska.',
     short: 'Ładowarki od 8,5 do 25 ton, w tym kołowe. Regularnie serwisowane.',
     icon: 'loader',
     body: [
@@ -182,11 +188,12 @@ export const services: Service[] = [
   },
   {
     slug: 'wynajem-wozidel',
+    areaHeading: 'Gdzie wynajmujemy wozidła',
     name: 'Wynajem wozideł budowlanych',
     h1: 'Wynajem wozideł budowlanych',
-    title: 'Wynajem wozideł budowlanych 1,5–16 t | Mirosław Stach',
+    title: 'Wynajem wozideł budowlanych 1,5–16 t – Kraków, Śląsk',
     description:
-      'Wynajem wozideł budowlanych o nośności od 1,5 do 16 ton, z doświadczonymi operatorami lub bez. Działamy na terenie całej Polski.',
+      'Wynajem wozideł budowlanych o nośności od 1,5 do 16 ton, z doświadczonymi operatorami lub bez. Kraków, Olkusz, Katowice i cała Polska.',
     short: 'Nośność od 1,5 do 16 ton, z doświadczonym operatorem lub bez.',
     icon: 'dumper',
     body: [
@@ -213,11 +220,12 @@ export const services: Service[] = [
   },
   {
     slug: 'ciagnik-beczkowoz-zamiatarka',
+    areaHeading: 'Gdzie pracujemy ciągnikiem i zamiatarką',
     name: 'Usługi ciągnikiem rolniczym',
     h1: 'Usługi ciągnikiem rolniczym',
-    title: 'Usługi ciągnikiem, beczkowóz 10 000 l, zamiatarka',
+    title: 'Usługi ciągnikiem, beczkowóz, zamiatarka – Kraków, Chrzanów',
     description:
-      'Usługi ciągnikiem rolniczym z przyczepą 10 m³ i beczką 10 000 l: przewóz materiałów, polewanie dróg, stabilizacja. Zamiatarka uliczna. Cała Polska.',
+      'Usługi ciągnikiem rolniczym z przyczepą 10 m³ i beczką 10 000 l: przewóz materiałów, polewanie dróg, zamiatarka uliczna. Kraków, Chrzanów, Olkusz i cała Polska.',
     short: 'Przyczepa 10 m³, beczka 10 000 l, polewanie dróg, zamiatarka uliczna.',
     icon: 'tractor',
     body: [

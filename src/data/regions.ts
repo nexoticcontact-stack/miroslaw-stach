@@ -12,6 +12,12 @@ export type Region = {
   faq: { q: string; a: string }[];
 };
 
+// Miejscowości najbliżej bazy w Przegini – pokazywane na podstronach usług.
+export const nearbyCities = ['Olkusz', 'Krzeszowice', 'Kraków', 'Chrzanów', 'Trzebinia', 'Jaworzno', 'Sosnowiec', 'Katowice'];
+
+// Dodatkowe okoliczne miejscowości – tylko w danych strukturalnych (schema areaServed).
+const extraCities = ['Wolbrom', 'Skała', 'Zabierzów', 'Bukowno', 'Klucze', 'Jerzmanowice', 'Libiąż', 'Alwernia'];
+
 export const regions: Region[] = [
   {
     slug: 'roboty-ziemne-malopolska',
@@ -63,4 +69,14 @@ export const regions: Region[] = [
       },
     ],
   },
+];
+
+// Pełna lista miejscowości do schema.org (bez powtórzeń).
+export const schemaCities = [...new Set([...nearbyCities, ...extraCities, ...regions.flatMap((r) => r.cities)])];
+
+export const schemaAreaServed = [
+  { '@type': 'AdministrativeArea', name: 'województwo małopolskie' },
+  { '@type': 'AdministrativeArea', name: 'województwo śląskie' },
+  ...schemaCities.map((c) => ({ '@type': 'City', name: c })),
+  { '@type': 'Country', name: 'Polska' },
 ];
