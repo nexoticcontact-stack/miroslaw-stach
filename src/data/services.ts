@@ -3,6 +3,7 @@ import type { Tag } from './gallery';
 export type Service = {
   slug: string;
   areaHeading: string; // nagłówek sekcji z miejscowościami
+  cities?: string[]; // własna lista miejscowości (domyślnie nearbyCities)
   name: string;
   h1: string;
   title: string;
@@ -221,11 +222,12 @@ export const services: Service[] = [
   {
     slug: 'ciagnik-beczkowoz-zamiatarka',
     areaHeading: 'Gdzie pracujemy ciągnikiem i zamiatarką',
+    cities: ['Trzebinia', 'Chrzanów', 'Jaworzno', 'Bukowno', 'Olkusz', 'Krzeszowice', 'Libiąż', 'Kraków'],
     name: 'Usługi ciągnikiem rolniczym',
     h1: 'Usługi ciągnikiem rolniczym',
-    title: 'Usługi ciągnikiem, beczkowóz, zamiatarka – Kraków, Chrzanów',
+    title: 'Zamiatarka uliczna, beczkowóz, ciągnik – Chrzanów, Jaworzno',
     description:
-      'Usługi ciągnikiem rolniczym z przyczepą 10 m³ i beczką 10 000 l: przewóz materiałów, polewanie dróg, zamiatarka uliczna. Kraków, Chrzanów, Olkusz i cała Polska.',
+      'Zamiatarka uliczna, beczkowóz 10 000 l i usługi ciągnikiem z przyczepą 10 m³: polewanie dróg, przewóz materiałów. Trzebinia, Chrzanów, Jaworzno, Bukowno, Olkusz.',
     short: 'Przyczepa 10 m³, beczka 10 000 l, polewanie dróg, zamiatarka uliczna.',
     icon: 'tractor',
     body: [
@@ -244,6 +246,10 @@ export const services: Service[] = [
       {
         q: 'Jaką pojemność ma przyczepa i beczka?',
         a: 'Przyczepa ma pojemność 10 m³, a beczka 10 000 litrów.',
+      },
+      {
+        q: 'Gdzie pracujecie zamiatarką uliczną?',
+        a: 'Najczęściej w Trzebini, Chrzanowie, Jaworznie, Bukownie, Olkuszu i Krzeszowicach, ale dojeżdżamy też do Krakowa i na Śląsk.',
       },
     ],
   },

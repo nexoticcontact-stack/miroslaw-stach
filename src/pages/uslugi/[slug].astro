@@ -86,7 +86,7 @@ const schema = [
         <h2>{s.areaHeading}</h2>
         <p>Bazę mamy w Przegini pod Krakowem, więc najszybciej dojeżdżamy do okolicznych miejscowości:</p>
         <ul class="chips">
-          {nearbyCities.map((c) => <li>{c}</li>)}
+          {(s.cities ?? nearbyCities).map((c) => <li>{c}</li>)}
         </ul>
         <p class="km-note">
           Większe zlecenia realizujemy w całej Polsce. Zobacz też:{' '}
